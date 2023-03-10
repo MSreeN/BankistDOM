@@ -31,3 +31,17 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+/////////////////////////////////////////////////////
+////////////Selecting elements
+console.log(document.documentElement);
+const sections = console.log(document.querySelectorAll('.section'));
+const button = document.getElementsByTagName('button')
+console.log(button);
+const qsButton = document.querySelectorAll('button');
+console.log(qsButton);
+console.log(document.getElementsByClassName('section'));
+
+////////////////////////////////////////////////////
+///creating and inserting elements
+
