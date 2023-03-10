@@ -35,13 +35,28 @@ document.addEventListener('keydown', function (e) {
 /////////////////////////////////////////////////////
 ////////////Selecting elements
 console.log(document.documentElement);
+const header = document.querySelector('header');header
 const sections = console.log(document.querySelectorAll('.section'));
 const button = document.getElementsByTagName('button')
-console.log(button);
+// console.log(button);
 const qsButton = document.querySelectorAll('button');
 console.log(qsButton);
-console.log(document.getElementsByClassName('section'));
+// console.log(document.getElementsByClassName('section'));
 
 ////////////////////////////////////////////////////
 ///creating and inserting elements
+const message = document.createElement('div');
+message.classList.add('cookie-message');
+message.innerHTML = 'We use cookies for improved functionality and analytics. <button class ="btn btn--close-cookie"> Got it!</button>';
+header.prepend(message)
+// header.append(message.cloneNode(true))
+header.after(message)
+//////////////////////////////////////////////////////
+//Deleting elements
+
+const delButton = document.querySelector('.btn--close-cookie');
+delButton.addEventListener('click', ()=>{
+  message.remove();
+})
+
 
