@@ -76,3 +76,8 @@ console.log(document.querySelector('.header__img').getAttribute('class'))
 
 console.log(document.querySelector('.header__img').alt);
   
+ 
+//////////////////////////////////////////////////////////
+//////////////Data attributes
+const img = document.querySelector(".header__img");
+console.log(img.dataset.versionNumber);
