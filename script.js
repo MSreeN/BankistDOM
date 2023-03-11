@@ -50,7 +50,7 @@ message.classList.add('cookie-message');
 message.innerHTML = 'We use cookies for improved functionality and analytics. <button class ="btn btn--close-cookie"> Got it!</button>';
 header.prepend(message)
 // header.append(message.cloneNode(true))
-header.after(message)
+header.before(message)
 //////////////////////////////////////////////////////
 //Deleting elements
 
@@ -60,3 +60,7 @@ delButton.addEventListener('click', ()=>{
 })
 
 
+/////////////////////////////////////////////////////
+///////////setting styles
+console.log(getComputedStyle(message).height);
+message.style.height = Number.parseFloat(getComputedStyle(message).height) + 80 + 'px';
