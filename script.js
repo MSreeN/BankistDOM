@@ -75,9 +75,46 @@ document.querySelector('.header__img').alt = "testing"
 console.log(document.querySelector('.header__img').getAttribute('class'))
 
 console.log(document.querySelector('.header__img').alt);
-  
+
  
 //////////////////////////////////////////////////////////
 //////////////Data attributes
 const img = document.querySelector(".header__img");
-console.log(img.dataset.versionNumber);
+// console.log(img.dataset.versionNumber);
+
+//////////////////////////////////////////////////////////
+///////////////Implementing smooth scrolling
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click',function(e){
+  console.log(e.target.getBoundingClientRect());
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+  /////////////to get the scroll bar position
+  console.log("Scroll bar position (x/y)", window.scrollX, "/", scrollY);
+  ////to get the current window width and height
+  console.log("height/width viewport", document.documentElement.clientHeight, "/", document.documentElement.clientWidth);
+
+  ///Scrolling
+  //by adding scrollY to the top makes the position of the section relative to the page top not to the viewport
+  //Normal scrolling and old way
+
+  // window.scrollTo(s1coords.left, s1coords.top+scrollY);
+
+
+  //smooth scrolling (old school way)
+  // window.scrollTo({
+  //   left: s1coords.left,
+  //   top: s1coords.top + scrollY,
+  //   behavior: 'smooth'
+  // });
+
+  section1.scrollIntoView({behavior: "smooth"})
+})
+
+document.querySelector('#section--1').addEventListener('click', function(e){
+  console.log(e.target.getBoundingClientRect());
+  console.log(window.scrollY);
+})
