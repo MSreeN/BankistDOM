@@ -110,7 +110,8 @@ btnScrollTo.addEventListener('click',function(e){
   //   top: s1coords.top + scrollY,
   //   behavior: 'smooth'
   // });
-
+ 
+  //Smooth scrolling (only supported in modern browsers)
   section1.scrollIntoView({behavior: "smooth"})
 })
 
