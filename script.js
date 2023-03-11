@@ -63,4 +63,9 @@ delButton.addEventListener('click', ()=>{
 /////////////////////////////////////////////////////
 ///////////setting styles
 console.log(getComputedStyle(message).height);
-message.style.height = Number.parseFloat(getComputedStyle(message).height) + 80 + 'px';
+message.style.height = Number.parseFloat(getComputedStyle(message).height) + 30 + 'px';
+
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+console.log(document.documentElement.style.removeProperty('--color-primary'));
+
+/////////////////////////////////////////////////////
