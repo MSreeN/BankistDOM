@@ -69,3 +69,10 @@ document.documentElement.style.setProperty('--color-primary', 'orangered');
 console.log(document.documentElement.style.removeProperty('--color-primary'));
 
 /////////////////////////////////////////////////////
+////////////////setting attributes
+document.querySelector('.header__img').alt = "testing"
+// document.querySelector('.header__img').className = 'hello'
+console.log(document.querySelector('.header__img').getAttribute('class'))
+
+console.log(document.querySelector('.header__img').alt);
+  
