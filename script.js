@@ -124,6 +124,12 @@ btnScrollTo.addEventListener('click',function(e){
 //////////////events and event handlers////////////////
 
 const h1 = document.querySelector('h1');
-h1.addEventListener("mouseleave", function(e){
-  alert("hello");
+h1.addEventListener("click", function(e){
+  console.log(getComputedStyle(h1).fontFamily);
 })
+
+/////old way of listening to events(not working when i tried)
+h1.click = function(e){
+ console.log(getComputedStyle(h1).fontFamily)
+ console.log('hello');
+}
