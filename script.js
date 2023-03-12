@@ -124,12 +124,17 @@ btnScrollTo.addEventListener('click',function(e){
 //////////////events and event handlers////////////////
 
 const h1 = document.querySelector('h1');
-h1.addEventListener("click", function(e){
-  console.log(getComputedStyle(h1).fontFamily);
-})
+function h1Alert(){
+  console.log("hello");
+}
+///We can add multiple events by just adding another event listener it won't override below even listener
+h1.addEventListener("click", h1Alert)
 
 /////old way of listening to events(not working when i tried)
+///if we try to add multiple event listener using below old way it will override below event listener
 h1.click = function(e){
  console.log(getComputedStyle(h1).fontFamily)
  console.log('hello');
 }
+///to remove an event listener add event listener should point to the reference of function (shouldn't include function by writing anonymous function) and give that function reference to the removeEvnet Listener
+h1.removeEventListener('click', h1Alert)
