@@ -115,7 +115,15 @@ btnScrollTo.addEventListener('click',function(e){
   section1.scrollIntoView({behavior: "smooth"})
 })
 
-document.querySelector('#section--1').addEventListener('click', function(e){
-  console.log(e.target.getBoundingClientRect());
-  console.log(window.scrollY);
+// document.querySelector('#section--1').addEventListener('click', function(e){
+//   console.log(e.target.getBoundingClientRect());
+//   console.log(window.scrollY);
+// })
+
+///////////////////////////////////////////////////////
+//////////////events and event handlers////////////////
+
+const h1 = document.querySelector('h1');
+h1.addEventListener("mouseleave", function(e){
+  alert("hello");
 })
