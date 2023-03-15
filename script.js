@@ -148,4 +148,19 @@ function randInt(min, max){
 function randomColor(){
   return `rgba(${randInt(0, 255)}, ${randInt(0, 255)}, ${randInt(0, 255)})`
 }
-console.log(randomColor());
+// console.log(randomColor());
+///////attaching event handlers to target nav link and nav links and the whole nav///////////////////////////
+
+
+////when click event is generated in the nav__link element then along with the action of this nav__link the event attached to it's(nav__link) parent element will be handled in all three places(nav__link, nav__links, nav), so the color of these three changes.
+document.querySelector('.nav__link').addEventListener('click',function(e){
+  this.style.backgroundColor = randomColor();
+})
+
+//If the click event is generated on the nav__links then the both current element (nav__links) and its parent element which ever the click event is attached will be handled , so the color of these two(nav__links, nav) changes.
+document.querySelector('.nav__links').addEventListener('click',function(e){
+  this.style.backgroundColor = randomColor();
+})
+document.querySelector('.nav').addEventListener('click',function(e){
+  this.style.backgroundColor = randomColor();
+})
