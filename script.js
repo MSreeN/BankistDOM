@@ -153,14 +153,20 @@ function randomColor(){
 
 
 ////when click event is generated in the nav__link element then along with the action of this nav__link the event attached to it's(nav__link) parent element will be handled in all three places(nav__link, nav__links, nav), so the color of these three changes.
+///If click happened on nav__link then all three eventListeners will receive the same event.
+//we tried printing e.target in all those 3 eventListeners and they printed the same element which is nav__link because event is generated on this nav__link and the same event is passed to all those other event Listener with click event.
+///////////This is because of event Bubbling. event is originated in the below link tag which is nav__link and it bubbles up to its parent element and next parent element and in all of the parent elements we can handle that element
 document.querySelector('.nav__link').addEventListener('click',function(e){
   this.style.backgroundColor = randomColor();
+  console.log("link", e.target, e.currentTarget);
 })
 
 //If the click event is generated on the nav__links then the both current element (nav__links) and its parent element which ever the click event is attached will be handled , so the color of these two(nav__links, nav) changes.
 document.querySelector('.nav__links').addEventListener('click',function(e){
   this.style.backgroundColor = randomColor();
+  console.log("container", e.target, e.currentTarget);
 })
 document.querySelector('.nav').addEventListener('click',function(e){
   this.style.backgroundColor = randomColor();
+  console.log("nav", e.target, e.currentTarget);
 })
