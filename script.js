@@ -159,6 +159,9 @@ function randomColor(){
 document.querySelector('.nav__link').addEventListener('click',function(e){
   this.style.backgroundColor = randomColor();
   console.log("link", e.target, e.currentTarget);
+  //Stopping event propagation
+  //This is not the good idea to stop propagation
+  e.stopPropagation();
 })
 
 //If the click event is generated on the nav__links then the both current element (nav__links) and its parent element which ever the click event is attached will be handled , so the color of these two(nav__links, nav) changes.
