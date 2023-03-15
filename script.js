@@ -138,3 +138,14 @@ h1.click = function(e){
 }
 ///to remove an event listener add event listener should point to the reference of function (shouldn't include function by writing anonymous function) and give that function reference to the removeEvnet Listener
 h1.removeEventListener('click', h1Alert)
+//////////////////////////////////////////////////////////
+/////Event propagation and event Bubbling
+
+function randInt(min, max){
+  return Math.round((Math.random()*(max-min))+min);
+}
+///Generating random color
+function randomColor(){
+  return `rgba(${randInt(0, 255)}, ${randInt(0, 255)}, ${randInt(0, 255)})`
+}
+console.log(randomColor());
