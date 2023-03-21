@@ -31,61 +31,8 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
-
-/////////////////////////////////////////////////////
-////////////Selecting elements
-console.log(document.documentElement);
-const header = document.querySelector('header');
-header;
-const sections = console.log(document.querySelectorAll('.section'));
-const button = document.getElementsByTagName('button');
-// console.log(button);
-const qsButton = document.querySelectorAll('button');
-console.log(qsButton);
-// console.log(document.getElementsByClassName('section'));
-
-////////////////////////////////////////////////////
-///creating and inserting elements
-const message = document.createElement('div');
-message.classList.add('cookie-message');
-message.innerHTML =
-  'We use cookies for improved functionality and analytics. <button class ="btn btn--close-cookie"> Got it!</button>';
-header.prepend(message);
-// header.append(message.cloneNode(true))
-header.before(message);
-//////////////////////////////////////////////////////
-//Deleting elements
-
-const delButton = document.querySelector('.btn--close-cookie');
-delButton.addEventListener('click', () => {
-  message.remove();
-});
-
-/////////////////////////////////////////////////////
-///////////setting styles
-console.log(getComputedStyle(message).height);
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height) + 30 + 'px';
-
-document.documentElement.style.setProperty('--color-primary', 'orangered');
-console.log(document.documentElement.style.removeProperty('--color-primary'));
-
-/////////////////////////////////////////////////////
-////////////////setting attributes
-document.querySelector('.header__img').alt = 'testing';
-// document.querySelector('.header__img').className = 'hello'
-console.log(document.querySelector('.header__img').getAttribute('class'));
-
-console.log(document.querySelector('.header__img').alt);
-
-//////////////////////////////////////////////////////////
-//////////////Data attributes
-const img = document.querySelector('.header__img');
-// console.log(img.dataset.versionNumber);
-
 //////////////////////////////////////////////////////////
 ///////////////Implementing smooth scrolling
-
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
@@ -120,10 +67,100 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
+
+
+
+////////////////////////////////////////
+///////page navigation
+
+
+
+
+
+/////////////////////////////////////////////////////
+////////////Selecting elements
+console.log(document.documentElement);
+const header = document.querySelector('header');
+header;
+const sections = console.log(document.querySelectorAll('.section'));
+const button = document.getElementsByTagName('button');
+// console.log(button);
+const qsButton = document.querySelectorAll('button');
+console.log(qsButton);
+// console.log(document.getElementsByClassName('section'));
+
+
+
+
+
+////////////////////////////////////////////////////
+///creating and inserting elements
+const message = document.createElement('div');
+message.classList.add('cookie-message');
+message.innerHTML =
+  'We use cookies for improved functionality and analytics. <button class ="btn btn--close-cookie"> Got it!</button>';
+header.prepend(message);
+// header.append(message.cloneNode(true))
+header.before(message);
+
+
+
+
+
+
+//////////////////////////////////////////////////////
+//Deleting elements
+
+const delButton = document.querySelector('.btn--close-cookie');
+delButton.addEventListener('click', () => {
+  message.remove();
+});
+
+
+
+
+
+/////////////////////////////////////////////////////
+///////////setting styles
+console.log(getComputedStyle(message).height);
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height) + 30 + 'px';
+
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+console.log(document.documentElement.style.removeProperty('--color-primary'));
+
+
+
+
+/////////////////////////////////////////////////////
+////////////////setting attributes
+document.querySelector('.header__img').alt = 'testing';
+// document.querySelector('.header__img').className = 'hello'
+console.log(document.querySelector('.header__img').getAttribute('class'));
+
+console.log(document.querySelector('.header__img').alt);
+
+
+
+
+
+//////////////////////////////////////////////////////////
+//////////////Data attributes
+const img = document.querySelector('.header__img');
+// console.log(img.dataset.versionNumber);
+
+
+
+
+
 // document.querySelector('#section--1').addEventListener('click', function(e){
 //   console.log(e.target.getBoundingClientRect());
 //   console.log(window.scrollY);
 // })
+
+
+
+
 
 ///////////////////////////////////////////////////////
 //////////////events and event handlers////////////////
@@ -143,6 +180,11 @@ h1.click = function (e) {
 };
 ///to remove an event listener add event listener should point to the reference of function (shouldn't include function by writing anonymous function) and give that function reference to the removeEvnet Listener
 h1.removeEventListener('click', h1Alert);
+
+
+
+
+
 //////////////////////////////////////////////////////////
 /////Event propagation and event Bubbling
 
