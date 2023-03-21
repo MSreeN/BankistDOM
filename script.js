@@ -72,7 +72,11 @@ btnScrollTo.addEventListener('click', function (e) {
 
 ////////////////////////////////////////
 ///////page navigation
-
+document.querySelectorAll('.nav__link').forEach( ele => {
+  ele.addEventListener('click',function(e){
+    e.preventDefault();
+  })
+})
 
 
 
