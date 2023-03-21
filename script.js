@@ -68,16 +68,16 @@ btnScrollTo.addEventListener('click', function (e) {
 });
 
 
-
-
 ////////////////////////////////////////
 ///////page navigation
-document.querySelectorAll('.nav__link').forEach( ele => {
-  ele.addEventListener('click',function(e){
+document.querySelectorAll('.nav__link').forEach(function(ele) {
+  ele.addEventListener('click', function (e) {
     e.preventDefault();
-  })
-})
-
+    const id = this.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  });
+});
 
 
 
@@ -93,10 +93,6 @@ const qsButton = document.querySelectorAll('button');
 console.log(qsButton);
 // console.log(document.getElementsByClassName('section'));
 
-
-
-
-
 ////////////////////////////////////////////////////
 ///creating and inserting elements
 const message = document.createElement('div');
@@ -107,11 +103,6 @@ header.prepend(message);
 // header.append(message.cloneNode(true))
 header.before(message);
 
-
-
-
-
-
 //////////////////////////////////////////////////////
 //Deleting elements
 
@@ -119,10 +110,6 @@ const delButton = document.querySelector('.btn--close-cookie');
 delButton.addEventListener('click', () => {
   message.remove();
 });
-
-
-
-
 
 /////////////////////////////////////////////////////
 ///////////setting styles
@@ -133,9 +120,6 @@ message.style.height =
 document.documentElement.style.setProperty('--color-primary', 'orangered');
 console.log(document.documentElement.style.removeProperty('--color-primary'));
 
-
-
-
 /////////////////////////////////////////////////////
 ////////////////setting attributes
 document.querySelector('.header__img').alt = 'testing';
@@ -144,27 +128,15 @@ console.log(document.querySelector('.header__img').getAttribute('class'));
 
 console.log(document.querySelector('.header__img').alt);
 
-
-
-
-
 //////////////////////////////////////////////////////////
 //////////////Data attributes
 const img = document.querySelector('.header__img');
 // console.log(img.dataset.versionNumber);
 
-
-
-
-
 // document.querySelector('#section--1').addEventListener('click', function(e){
 //   console.log(e.target.getBoundingClientRect());
 //   console.log(window.scrollY);
 // })
-
-
-
-
 
 ///////////////////////////////////////////////////////
 //////////////events and event handlers////////////////
@@ -185,10 +157,6 @@ h1.click = function (e) {
 ///to remove an event listener add event listener should point to the reference of function (shouldn't include function by writing anonymous function) and give that function reference to the removeEvnet Listener
 h1.removeEventListener('click', h1Alert);
 
-
-
-
-
 //////////////////////////////////////////////////////////
 /////Event propagation and event Bubbling
 
@@ -208,29 +176,26 @@ function randomColor() {
 ///////////This is because of event Bubbling. event is originated in the below link tag which is nav__link and it bubbles up to its parent element and next parent element and in all of the parent elements we can handle that element
 document.querySelector('.nav__link').addEventListener('click', function (e) {
   this.style.backgroundColor = randomColor();
-  console.log('link', e.target, e.currentTarget);
+  // console.log('link', e.target, e.currentTarget);
   //Stopping event propagation
   //This is not the good idea to stop propagation
+  // console.log("1st");
   e.stopPropagation();
 });
 
 //attaching click event on the nav__link element
 
 document.querySelector('.nav__link').addEventListener('click', function (e) {
-  console.log('double clicked');
+  // console.log("2st");
+  // console.log('double clicked');
 });
 
 //If the click event is generated on the nav__links then the both current element (nav__links) and its parent element which ever the click event is attached will be handled , so the color of these two(nav__links, nav) changes.
-document.querySelector('.nav__links').addEventListener(
-  'click',
-  function (e) {
-    this.style.backgroundColor = randomColor();
-    console.log('container', e.target, e.currentTarget);
-  }
-);
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  // console.log('container', e.target, e.currentTarget);
+});
 document.querySelector('.nav').addEventListener('click', function (e) {
   this.style.backgroundColor = randomColor();
-  console.log('nav', e.target, e.currentTarget);
+  // console.log('nav', e.target, e.currentTarget);
 });
-
-
