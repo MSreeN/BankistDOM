@@ -218,3 +218,15 @@ document.querySelector('.nav').addEventListener('click', function (e) {
   // this.style.backgroundColor = randomColor();
   // console.log('nav', e.target, e.currentTarget);
 });
+
+
+
+
+
+
+
+////////////////////////////////////////////////////
+////////////////////////DOM Traversing
+
+
+console.log(h1.querySelectorAll('.highlight'));
