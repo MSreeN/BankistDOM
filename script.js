@@ -99,14 +99,14 @@ document.querySelector('.nav__links').addEventListener('click',e => {
 
 /////////////////////////////////////////////////////
 ////////////Selecting elements
-console.log(document.documentElement);
+// console.log(document.documentElement);
 const header = document.querySelector('header');
 header;
-const sections = console.log(document.querySelectorAll('.section'));
+// const sections = console.log(document.querySelectorAll('.section'));
 const button = document.getElementsByTagName('button');
 // console.log(button);
 const qsButton = document.querySelectorAll('button');
-console.log(qsButton);
+// console.log(qsButton);
 // console.log(document.getElementsByClassName('section'));
 
 ////////////////////////////////////////////////////
@@ -129,20 +129,20 @@ delButton.addEventListener('click', () => {
 
 /////////////////////////////////////////////////////
 ///////////setting styles
-console.log(getComputedStyle(message).height);
+// console.log(getComputedStyle(message).height);
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height) + 30 + 'px';
 
 document.documentElement.style.setProperty('--color-primary', 'orangered');
-console.log(document.documentElement.style.removeProperty('--color-primary'));
+// console.log(document.documentElement.style.removeProperty('--color-primary'));
 
 /////////////////////////////////////////////////////
 ////////////////setting attributes
 document.querySelector('.header__img').alt = 'testing';
 // document.querySelector('.header__img').className = 'hello'
-console.log(document.querySelector('.header__img').getAttribute('class'));
+// console.log(document.querySelector('.header__img').getAttribute('class'));
 
-console.log(document.querySelector('.header__img').alt);
+// console.log(document.querySelector('.header__img').alt);
 
 //////////////////////////////////////////////////////////
 //////////////Data attributes
@@ -230,3 +230,26 @@ document.querySelector('.nav').addEventListener('click', function (e) {
 
 
 console.log(h1.querySelectorAll('.highlight'));
+/////to get all the children
+const sp = document.createElement("span")
+sp.textContent = "hello"
+// console.log(h1.childNodes); 
+// h1.firstElementChild.style.color = "white"
+// h1.children[2].style.color = "white"
+
+
+/////////////////Going upwards: parents
+console.log(h1.parentElement);
+console.log(h1.closest('.smp'));
+
+
+////////////////////getting siblings
+
+console.log(h1.previousElementSibling);
+const child = h1.parentElement.children;
+console.log(child);
+[...child].forEach( ele => {
+  if(ele !== h1){
+    // ele.style.backgroundColor = "red"
+  }
+})
