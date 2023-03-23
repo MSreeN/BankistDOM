@@ -100,11 +100,17 @@ const tabContent = document.querySelectorAll('.operations__content');
 console.log(tabContainer);
 tabContainer.addEventListener('click', function(e){
     const className = e.target.closest('.operations__tab');
-    console.log(className);
+    // console.log(className);
     //Guard clause
     if(!className) return;
-    className.classList.toggle('operations__tab--active');
+    
     // className.tagName === "SPAN"? console.log(className.parentElement): console.log(className);
+    
+    /////putting other buttons  down when clicked a button
+    tabs.forEach(tab =>{
+      tab.classList.remove('operations__tab--active')
+    })
+    className.classList.toggle('operations__tab--active');
   })
 
 
