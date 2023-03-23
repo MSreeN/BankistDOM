@@ -95,20 +95,15 @@ document.querySelector('.nav__links').addEventListener('click', e => {
 ////////////////////////////////////////////////////////
 /////////////////////Tabbed Component
 const tabs = document.querySelectorAll('.operations__tab');
-const tabContainers = document.querySelectorAll('.operations__tab-container');
+const tabContainer = document.querySelectorAll('.operations__tab-container');
 const tabContent = document.querySelectorAll('.operations__content');
 
-tabs.forEach(tab => {
-  tab.addEventListener('click', function (e) {
-    const tabClasses = this.className;
-    if (tabClasses.split('').includes('1')) {
-      console.log('1');
-    } else if (tabClasses.split('').includes('2')) {
-      console.log('2');
-    } 
-    tabClasses.split('').includes('3')? console.log("3"):'';
-  });
-});
+tabContainer.forEach(tab => {
+  tab.addEventListener('click', function(e){
+    const className = e.target.className;
+    console.log(className);
+  })
+})
 
 /////////////////////////////////////////////////////
 ////////////Selecting elements
