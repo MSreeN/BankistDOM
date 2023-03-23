@@ -67,7 +67,6 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
-
 ////////////////////////////////////////
 ///////page navigation
 
@@ -80,22 +79,36 @@ btnScrollTo.addEventListener('click', function (e) {
 //   });
 // });
 
-
-
 //Instead of adding click function to every nav like we did above, we make use of event delegation where we will attach that click function to parent element which is common to all navigation anchor tags like ".nav__links".
 // so when we click on the any of the nav element it will cause click event and that event will bubble up to the top of the document and in the way we have parent element of nav__link which is "nav__links" click event function will execute in the bubbling phase.
-// We were able to navigate to the respective section when clicked on the respective nav__link by using e.target, this will give the target element on which click event is generated and which caused the click event function in the parent element nav__links to execute during the bubbling phase and we are getting the section id which is hard coded in the html and set the "scrollIntoView" on that particular e.target element. 
+// We were able to navigate to the respective section when clicked on the respective nav__link by using e.target, this will give the target element on which click event is generated and which caused the click event function in the parent element nav__links to execute during the bubbling phase and we are getting the section id which is hard coded in the html and set the "scrollIntoView" on that particular e.target element.
 
-document.querySelector('.nav__links').addEventListener('click',e => {
+document.querySelector('.nav__links').addEventListener('click', e => {
   e.preventDefault();
   const id = e.target.getAttribute('href');
   //Matching technique
-  if(e.target.classList.contains('nav__link')){
-    
-    document.querySelector(id).scrollIntoView({behavior: 'smooth'})
+  if (e.target.classList.contains('nav__link')) {
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
-})
+});
 
+////////////////////////////////////////////////////////
+/////////////////////Tabbed Component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabContainers = document.querySelectorAll('.operations__tab-container');
+const tabContent = document.querySelectorAll('.operations__content');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', function (e) {
+    const tabClasses = this.className;
+    if (tabClasses.split('').includes('1')) {
+      console.log('1');
+    } else if (tabClasses.split('').includes('2')) {
+      console.log('2');
+    } 
+    tabClasses.split('').includes('3')? console.log("3"):'';
+  });
+});
 
 /////////////////////////////////////////////////////
 ////////////Selecting elements
@@ -133,7 +146,7 @@ delButton.addEventListener('click', () => {
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height) + 30 + 'px';
 
-document.documentElement.style.setProperty('--color-primary', 'orangered');
+// document.documentElement.style.setProperty('--color-primary', 'orangered');
 // console.log(document.documentElement.style.removeProperty('--color-primary'));
 
 /////////////////////////////////////////////////////
@@ -203,7 +216,7 @@ function randomColor() {
 
 //attaching click event on the nav__link element
 
-//////////////////commented out 
+//////////////////commented out
 // document.querySelector('.nav__link').addEventListener('click', function (e) {
 //   // console.log("2st");
 //   // console.log('double clicked');
@@ -219,37 +232,28 @@ document.querySelector('.nav').addEventListener('click', function (e) {
   // console.log('nav', e.target, e.currentTarget);
 });
 
-
-
-
-
-
-
 ////////////////////////////////////////////////////
 ////////////////////////DOM Traversing
 
-
 console.log(h1.querySelectorAll('.highlight'));
 /////to get all the children
-const sp = document.createElement("span")
-sp.textContent = "hello"
-// console.log(h1.childNodes); 
+const sp = document.createElement('span');
+sp.textContent = 'hello';
+// console.log(h1.childNodes);
 // h1.firstElementChild.style.color = "white"
 // h1.children[2].style.color = "white"
-
 
 /////////////////Going upwards: parents
 console.log(h1.parentElement);
 console.log(h1.closest('.smp'));
-
 
 ////////////////////getting siblings
 
 console.log(h1.previousElementSibling);
 const child = h1.parentElement.children;
 console.log(child);
-[...child].forEach( ele => {
-  if(ele !== h1){
+[...child].forEach(ele => {
+  if (ele !== h1) {
     // ele.style.backgroundColor = "red"
   }
-})
+});
