@@ -101,6 +101,9 @@ console.log(tabContainer);
 tabContainer.addEventListener('click', function(e){
     const className = e.target.closest('.operations__tab');
     console.log(className);
+    //Guard clause
+    if(!className) return;
+    className.classList.toggle('operations__tab--active');
     // className.tagName === "SPAN"? console.log(className.parentElement): console.log(className);
   })
 
