@@ -95,15 +95,15 @@ document.querySelector('.nav__links').addEventListener('click', e => {
 ////////////////////////////////////////////////////////
 /////////////////////Tabbed Component
 const tabs = document.querySelectorAll('.operations__tab');
-const tabContainer = document.querySelectorAll('.operations__tab-container');
+const tabContainer = document.querySelector('.operations__tab-container');
 const tabContent = document.querySelectorAll('.operations__content');
-
-tabContainer.forEach(tab => {
-  tab.addEventListener('click', function(e){
-    const className = e.target.className;
+console.log(tabContainer);
+tabContainer.addEventListener('click', function(e){
+    const className = e.target.closest('.operations__tab');
     console.log(className);
+    // className.tagName === "SPAN"? console.log(className.parentElement): console.log(className);
   })
-})
+
 
 /////////////////////////////////////////////////////
 ////////////Selecting elements
