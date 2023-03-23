@@ -111,6 +111,17 @@ tabContainer.addEventListener('click', function(e){
       tab.classList.remove('operations__tab--active')
     })
     className.classList.toggle('operations__tab--active');
+
+    /////displaying content based on button clicked
+    ////using data attribute
+    const dataTab = className.dataset.tab;
+    //Removing active class from all contents
+    // active class set display to grid which was previously none 
+    tabContent.forEach(content => {
+      content.classList.remove('operations__content--active')
+    })
+    //adding active class to respective content make changing display of that content to grid.
+    document.querySelector(`.operations__content--${dataTab}`).classList.add('operations__content--active')
   })
 
 
