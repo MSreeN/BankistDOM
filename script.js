@@ -131,7 +131,8 @@ tabContainer.addEventListener('click', function(e){
 /////////////////////////////////////////////////////////
 //////////Menu fade animation
 //using event delegation
-nav.addEventListener('mouseover', function(e){
+
+function handleHover(e,opacity){
   if(e.target.classList.contains('nav__link')) {
     const link = e.target;
     console.log(link);
@@ -140,20 +141,18 @@ nav.addEventListener('mouseover', function(e){
     const logo = link.closest('nav').querySelector('.nav__logo')
     siblings.forEach(ele => {
       if(ele !== link){
-        ele.style.opacity = '50%'
+        ele.style.opacity = opacity;
       }
     });
-    logo.style.opacity = "50%"
+    logo.style.opacity = opacity
   }
+}
+
+nav.addEventListener('mouseover', function(e){
+  handleHover(e, "50%")
 })
 nav.addEventListener('mouseout', function(e){
-  if(e.target.classList.contains('nav__link')){
-    const siblings = e.target.closest('.nav').querySelectorAll('.nav__link');
-    const logo = e.target.closest('.nav').querySelector('.nav__logo');
-
-    siblings.forEach(ele => ele.style.opacity = "100%");
-    logo.style.opacity = "100%";
-  }
+  handleHover(e, "100%")
 })
 
 
