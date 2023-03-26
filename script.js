@@ -138,8 +138,11 @@ nav.addEventListener('mouseover', function(e){
 
     const logo = link.closest('nav').querySelector('.nav__logo')
     siblings.forEach(ele => {
-      ele.style.opacity = "50%";
-    })
+      if(ele !== link){
+        ele.style.opacity = '50%'
+      }
+    });
+    logo.style.opacity = "50%"
   }
 })
 nav.addEventListener('mouseout', function(e){
@@ -147,7 +150,8 @@ nav.addEventListener('mouseout', function(e){
     const siblings = e.target.closest('.nav').querySelectorAll('.nav__link');
     const logo = e.target.closest('.nav').querySelector('.nav__logo');
 
-    siblings.forEach(ele => ele.style.opacity = "100%")
+    siblings.forEach(ele => ele.style.opacity = "100%");
+    logo.style.opacity = "100%"
   }
 })
 
