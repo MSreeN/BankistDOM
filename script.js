@@ -132,28 +132,27 @@ tabContainer.addEventListener('click', function(e){
 //////////Menu fade animation
 //using event delegation
 
-function handleHover(e,opacity){
+function handleHover(e){
+  //we can access e here because js provides this parameter to the function and any handler function can ever have one real argument which is e and we are able to access capacity with the help of this(first argument to bind) which is not really an argument.
   if(e.target.classList.contains('nav__link')) {
     const link = e.target;
-    console.log(link);
+    // console.log(link);
     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
     // console.log(siblings);
     const logo = link.closest('nav').querySelector('.nav__logo')
     siblings.forEach(ele => {
       if(ele !== link){
-        ele.style.opacity = opacity;
+        ele.style.opacity = this;
       }
     });
-    logo.style.opacity = opacity
+    logo.style.opacity = this
   }
 }
+//50% wil become this(because first argument will be this to bind function, this is the element that this event listener attached to , but here we manually set the this keyword to 50 and 100), and can be accessed using this.
+//passing an argument into handler
+nav.addEventListener('mouseover', handleHover.bind("50%"))
 
-nav.addEventListener('mouseover', function(e){
-  handleHover(e, "50%")
-})
-nav.addEventListener('mouseout', function(e){
-  handleHover(e, "100%")
-})
+nav.addEventListener('mouseout', handleHover.bind("100%"))
 
 
 
