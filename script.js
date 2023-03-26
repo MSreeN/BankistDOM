@@ -7,6 +7,10 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabContainer = document.querySelector('.operations__tab-container');
+const tabContent = document.querySelectorAll('.operations__content');
+const nav = document.querySelector('.nav')
 
 const openModal = function (e) {
   e.preventDefault();
@@ -94,9 +98,7 @@ document.querySelector('.nav__links').addEventListener('click', e => {
 
 ////////////////////////////////////////////////////////
 /////////////////////Tabbed Component
-const tabs = document.querySelectorAll('.operations__tab');
-const tabContainer = document.querySelector('.operations__tab-container');
-const tabContent = document.querySelectorAll('.operations__content');
+
 console.log(tabContainer);
 tabContainer.addEventListener('click', function(e){
     const className = e.target.closest('.operations__tab');
@@ -123,6 +125,32 @@ tabContainer.addEventListener('click', function(e){
     //adding active class to respective content make changing display of that content to grid.
     document.querySelector(`.operations__content--${dataTab}`).classList.add('operations__content--active')
   })
+
+
+
+/////////////////////////////////////////////////////////
+//////////Menu fade animation
+//using event delegation
+nav.addEventListener('mouseover', function(e){
+  if(e.target.className === 'nav__link') {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+
+    const logo = link.closest('nav').querySelector('.nav__logo')
+    siblings.forEach(ele => {
+      ele.style.opacity = "50%";
+    })
+  }
+})
+nav.addEventListener('mouseout', function(e){
+  if(e.target.className === 'nav__links'){
+    const siblings = e.target.closest('.nav').querySelectorAll('.nav__link');
+    const logo = e.target.closest('.nav').querySelector('.nav__logo');
+
+    siblings.forEach(ele => ele.style.opacity = "100%")
+  }
+})
+
 
 
 /////////////////////////////////////////////////////
