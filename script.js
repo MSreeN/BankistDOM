@@ -132,10 +132,11 @@ tabContainer.addEventListener('click', function(e){
 //////////Menu fade animation
 //using event delegation
 nav.addEventListener('mouseover', function(e){
-  if(e.target.className === 'nav__link') {
+  if(e.target.classList.contains('nav__link')) {
     const link = e.target;
+    console.log(link);
     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
-
+    // console.log(siblings);
     const logo = link.closest('nav').querySelector('.nav__logo')
     siblings.forEach(ele => {
       if(ele !== link){
@@ -146,12 +147,12 @@ nav.addEventListener('mouseover', function(e){
   }
 })
 nav.addEventListener('mouseout', function(e){
-  if(e.target.className === 'nav__links'){
+  if(e.target.classList.contains('nav__link')){
     const siblings = e.target.closest('.nav').querySelectorAll('.nav__link');
     const logo = e.target.closest('.nav').querySelector('.nav__logo');
 
     siblings.forEach(ele => ele.style.opacity = "100%");
-    logo.style.opacity = "100%"
+    logo.style.opacity = "100%";
   }
 })
 
