@@ -156,6 +156,26 @@ nav.addEventListener('mouseout', handleHover.bind("100%"))
 
 
 
+/////////////////////////////////////////////////////////
+///////////////making navigation sticky
+
+btnScrollTo.addEventListener('mouseover', function(e){
+  console.log(section1.getBoundingClientRect());
+})
+
+window.addEventListener('scroll', function(e){
+  let s1coords = section1.getBoundingClientRect();
+  //if(s1coords.y <= 0 )-- this also works
+  if(window.scrollY > s1coords.top+this.window.scrollY){
+    nav.classList.add('sticky');
+  }
+  else{
+    nav.classList.remove('sticky');
+  }
+})
+
+
+
 /////////////////////////////////////////////////////
 ////////////Selecting elements
 // console.log(document.documentElement);
