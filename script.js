@@ -160,7 +160,7 @@ nav.addEventListener('mouseout', handleHover.bind("100%"))
 ///////////////making navigation sticky
 
 btnScrollTo.addEventListener('mouseover', function(e){
-  console.log(section1.getBoundingClientRect());
+  // console.log(section1.getBoundingClientRect());
 })
 
 window.addEventListener('scroll', function(e){
@@ -173,6 +173,27 @@ window.addEventListener('scroll', function(e){
     nav.classList.remove('sticky');
   }
 })
+
+
+
+////////////////////////////////////////////////////
+/////////////Intersection observer api
+const obsCallBack = (entries, observer) => {
+  //entries are the array of threshold entries.
+  entries.forEach((entry) => {console.log(entry);})
+}
+
+const obsOptions = {
+  root: null, // if null then root will be viewport
+  threshold: 0.05 
+}
+
+
+
+////create new intersection observer
+const observer = new IntersectionObserver(obsCallBack, obsOptions);
+//observing target element
+observer.observe(section1);
 
 
 
