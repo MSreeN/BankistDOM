@@ -185,7 +185,8 @@ const obsCallBack = (entries, observer) => {
 
 const obsOptions = {
   root: null, // if null then root will be viewport
-  threshold: 0.05 
+  //threshold is the amount / percentage of the target element that should be visible within the root element(viewport here), if this condition satisfies then the callback will be executed.
+  threshold: 0.1 
 }
 
 
