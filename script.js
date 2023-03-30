@@ -10,7 +10,7 @@ const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const tabs = document.querySelectorAll('.operations__tab');
 const tabContainer = document.querySelector('.operations__tab-container');
 const tabContent = document.querySelectorAll('.operations__content');
-const nav = document.querySelector('.nav')
+const nav = document.querySelector('.nav');
 
 const openModal = function (e) {
   e.preventDefault();
@@ -100,109 +100,111 @@ document.querySelector('.nav__links').addEventListener('click', e => {
 /////////////////////Tabbed Component
 
 console.log(tabContainer);
-tabContainer.addEventListener('click', function(e){
-    const className = e.target.closest('.operations__tab');
-    // console.log(className);
-    //Guard clause
-    if(!className) return;
-    
-    // className.tagName === "SPAN"? console.log(className.parentElement): console.log(className);
-    
-    /////putting other buttons  down when clicked a button
-    tabs.forEach(tab =>{
-      tab.classList.remove('operations__tab--active')
-    })
-    className.classList.toggle('operations__tab--active');
+tabContainer.addEventListener('click', function (e) {
+  const className = e.target.closest('.operations__tab');
+  // console.log(className);
+  //Guard clause
+  if (!className) return;
 
-    /////displaying content based on button clicked
-    ////using data attribute
-    const dataTab = className.dataset.tab;
-    //Removing active class from all contents
-    // active class set display to grid which was previously none 
-    tabContent.forEach(content => {
-      content.classList.remove('operations__content--active')
-    })
-    //adding active class to respective content make changing display of that content to grid.
-    document.querySelector(`.operations__content--${dataTab}`).classList.add('operations__content--active')
-  })
+  // className.tagName === "SPAN"? console.log(className.parentElement): console.log(className);
 
+  /////putting other buttons  down when clicked a button
+  tabs.forEach(tab => {
+    tab.classList.remove('operations__tab--active');
+  });
+  className.classList.toggle('operations__tab--active');
 
+  /////displaying content based on button clicked
+  ////using data attribute
+  const dataTab = className.dataset.tab;
+  //Removing active class from all contents
+  // active class set display to grid which was previously none
+  tabContent.forEach(content => {
+    content.classList.remove('operations__content--active');
+  });
+  //adding active class to respective content make changing display of that content to grid.
+  document
+    .querySelector(`.operations__content--${dataTab}`)
+    .classList.add('operations__content--active');
+});
 
 /////////////////////////////////////////////////////////
 //////////Menu fade animation
 //using event delegation
 
-function handleHover(e){
+function handleHover(e) {
   //we can access e here because js provides this parameter to the function and any handler function can ever have one real argument which is e and we are able to access capacity with the help of this(first argument to bind) which is not really an argument.
-  if(e.target.classList.contains('nav__link')) {
+  if (e.target.classList.contains('nav__link')) {
     const link = e.target;
     // console.log(link);
     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
     // console.log(siblings);
-    const logo = link.closest('nav').querySelector('.nav__logo')
+    const logo = link.closest('nav').querySelector('.nav__logo');
     siblings.forEach(ele => {
-      if(ele !== link){
+      if (ele !== link) {
         ele.style.opacity = this;
       }
     });
-    logo.style.opacity = this
+    logo.style.opacity = this;
   }
 }
 //50% wil become this(because first argument will be this to bind function, this is the element that this event listener attached to , but here we manually set the this keyword to 50 and 100), and can be accessed using this.
 //passing an argument into handler
-nav.addEventListener('mouseover', handleHover.bind("50%"))
+nav.addEventListener('mouseover', handleHover.bind('50%'));
 
-nav.addEventListener('mouseout', handleHover.bind("100%"))
-
-
+nav.addEventListener('mouseout', handleHover.bind('100%'));
 
 /////////////////////////////////////////////////////////
 ///////////////making navigation sticky
 
-btnScrollTo.addEventListener('mouseover', function(e){
+btnScrollTo.addEventListener('mouseover', function (e) {
   // console.log(section1.getBoundingClientRect());
-})
+});
 
-window.addEventListener('scroll', function(e){
+window.addEventListener('scroll', function (e) {
   let s1coords = section1.getBoundingClientRect();
   //if(s1coords.y <= 0 )-- this also works
-  if(window.scrollY > s1coords.top+this.window.scrollY){
-    nav.classList.add('sticky');
+  if (window.scrollY > s1coords.top + this.window.scrollY) {
+    // nav.classList.add('sticky');
+  } else {
+    // nav.classList.remove('sticky');
   }
-  else{
-    nav.classList.remove('sticky');
-  }
-})
-
-
+});
 
 ////////////////////////////////////////////////////
 /////////////Intersection observer api
+///This callback will be called when target element is moving into the root and moving out of the root.
+const header = document.querySelector('header');
+header;
 const obsCallBack = (entries, observer) => {
   //entries are the array of threshold entries.
-  entries.forEach((entry) => {console.log(entry);})
-}
+  entries.forEach(entry => {
+    console.log(entry);
+    if (!entry.isIntersecting) {
+      nav.classList.add('sticky');
+    } else {
+      nav.classList.remove('sticky');
+    }
+  });
+
+  // if(entries.)
+};
 
 const obsOptions = {
   root: null, // if null then root will be viewport
   //threshold is the amount / percentage of the target element that should be visible within the root element(viewport here), if this condition satisfies then the callback will be executed.
-  threshold: 0.1 
-}
-
-
+  threshold: [0],
+};
 
 ////create new intersection observer
 const observer = new IntersectionObserver(obsCallBack, obsOptions);
 //observing target element
-observer.observe(section1);
-
-
+observer.observe(header);
 
 /////////////////////////////////////////////////////
 ////////////Selecting elements
 // console.log(document.documentElement);
-const header = document.querySelector('header');
-header;
+
 // const sections = console.log(document.querySelectorAll('.section'));
 const button = document.getElementsByTagName('button');
 // console.log(button);
@@ -218,7 +220,10 @@ message.innerHTML =
   'We use cookies for improved functionality and analytics. <button class ="btn btn--close-cookie"> Got it!</button>';
 header.prepend(message);
 // header.append(message.cloneNode(true))
-header.before(message);
+// header.before(message);
+// setTimeout(function(){
+//   message.style.display = "none";
+// }, 1000)
 
 //////////////////////////////////////////////////////
 //Deleting elements
