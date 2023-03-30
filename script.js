@@ -279,7 +279,7 @@ h1.click = function (e) {
   console.log(getComputedStyle(h1).fontFamily);
   console.log('hello');
 };
-///to remove an event listener add event listener should point to the reference of function (shouldn't include function by writing anonymous function) and give that function reference to the removeEvnet Listener
+///to remove an event listener add event listener should point to the reference of function (shouldn't include function by writing anonymous function) and give that function reference to the removeEvent Listener
 h1.removeEventListener('click', h1Alert);
 
 //////////////////////////////////////////////////////////
