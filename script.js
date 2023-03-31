@@ -207,9 +207,25 @@ observer.observe(header);
 
 
 //////////Revealing elements on scroll
+const allSections = document.querySelectorAll('.section');
+console.log(allSections);
+
+function revealSection(entries, observer){
+  const [entry] = entries;
+  console.log(entry);
+  entry.target.classList.remove('section--hidden');
+}
 
 
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.1
+})
 
+allSections.forEach(section => {
+  sectionObserver.observe(section);
+  section.classList.add('section--hidden')
+})
 /////////////////////////////////////////////////////
 ////////////Selecting elements
 // console.log(document.documentElement);
