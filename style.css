@@ -172,6 +172,7 @@ img {
 
 /* HEADER */
 .header {
+  
   padding: 0 3rem;
   height: 100vh;
   display: flex;
@@ -191,6 +192,10 @@ img {
 
   align-items: start;
   justify-items: start;
+}
+
+.smp{
+  margin-top: 12rem;
 }
 
 h1 {

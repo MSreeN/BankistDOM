@@ -213,7 +213,13 @@ console.log(allSections);
 function revealSection(entries, observer){
   const [entry] = entries;
   console.log(entry);
-  entry.target.classList.remove('section--hidden');
+  if(entry.isIntersecting){
+    entry.target.classList.remove('section--hidden')
+  }
+  else{
+    entry.target.classList.add('section--hidden')
+
+  }
 }
 
 
@@ -240,10 +246,10 @@ const qsButton = document.querySelectorAll('button');
 ////////////////////////////////////////////////////
 ///creating and inserting elements
 const message = document.createElement('div');
-message.classList.add('cookie-message');
+// message.classList.add('cookie-message');
 message.innerHTML =
   'We use cookies for improved functionality and analytics. <button class ="btn btn--close-cookie"> Got it!</button>';
-header.prepend(message);
+// header.prepend(message);
 // header.append(message.cloneNode(true))
 // header.before(message);
 // setTimeout(function(){
