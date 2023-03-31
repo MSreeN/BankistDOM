@@ -215,10 +215,10 @@ function revealSection(entries, observer){
   console.log(entry);
   if(entry.isIntersecting){
     entry.target.classList.remove('section--hidden')
+    observer.unobserve(entry.target)
   }
   else{
     entry.target.classList.add('section--hidden')
-
   }
 }
 
@@ -259,10 +259,10 @@ message.innerHTML =
 //////////////////////////////////////////////////////
 //Deleting elements
 
-const delButton = document.querySelector('.btn--close-cookie');
-delButton.addEventListener('click', () => {
-  message.remove();
-});
+// const delButton = document.querySelector('.btn--close-cookie');
+// delButton.addEventListener('click', () => {
+//   message.remove();
+// });
 
 /////////////////////////////////////////////////////
 ///////////setting styles
