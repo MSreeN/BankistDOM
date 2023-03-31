@@ -182,7 +182,7 @@ const obsCallBack = (entries, observer) => {
   const [entry] = entries;
   if(!entry.isIntersecting){
     nav.classList.add('sticky');
-    console.log(nav.offsetHeight);
+    // console.log(nav.offsetHeight);
   }
   else{
     nav.classList.remove('sticky')
@@ -203,6 +203,12 @@ const obsOptions = {
 const observer = new IntersectionObserver(obsCallBack, obsOptions);
 //observing target element
 observer.observe(header);
+
+
+
+//////////Revealing elements on scroll
+
+
 
 /////////////////////////////////////////////////////
 ////////////Selecting elements
