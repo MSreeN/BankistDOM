@@ -180,12 +180,11 @@ const obsCallBack = (entries, observer) => {
   //entries are the array of threshold entries.
   //same as entries[0]
   const [entry] = entries;
-  if(!entry.isIntersecting){
+  if (!entry.isIntersecting) {
     nav.classList.add('sticky');
     // console.log(nav.offsetHeight);
-  }
-  else{
-    nav.classList.remove('sticky')
+  } else {
+    nav.classList.remove('sticky');
   }
   // if(entries.)
 };
@@ -196,7 +195,7 @@ const obsOptions = {
   //what i understood is when the mentioned threshold value is satisfied that means when 0 percent or more than 0 percent is visible in root element callback function gets executed and isIntersecting is set to true and when less than mentioned threshold value is visible in root element then isIntersecting is set to false
   threshold: [0],
   //should be specified in px/%
-  rootMargin: `-${nav.offsetHeight}px`
+  rootMargin: `-${nav.offsetHeight}px`,
 };
 
 ////create new intersection observer
@@ -204,52 +203,50 @@ const observer = new IntersectionObserver(obsCallBack, obsOptions);
 //observing target element
 observer.observe(header);
 
-
-
 //////////Revealing elements on scroll
 const allSections = document.querySelectorAll('.section');
 console.log(allSections);
 //In this function we also need observer because here we are selecting multiple sections which is not like single nav element which we did earlier (there we didn't use observer), we can get the details of the target that is currently in the view port from this observer that is generated when target entered root.
-function revealSection(entries, observer){
+function revealSection(entries, observer) {
   const [entry] = entries;
-  console.log(entry);
-  if(entry.isIntersecting){
-    entry.target.classList.remove('section--hidden')
-    observer.unobserve(entry.target)
-  }
-  else{
-    entry.target.classList.add('section--hidden')
+  // console.log(entry);
+  if (entry.isIntersecting) {
+    entry.target.classList.remove('section--hidden');
+    observer.unobserve(entry.target);
+  } else {
+    entry.target.classList.add('section--hidden');
   }
 }
 
-
 const sectionObserver = new IntersectionObserver(revealSection, {
   root: null,
-  threshold: 0.1
-})
+  threshold: 0.1,
+});
 
 allSections.forEach(section => {
   sectionObserver.observe(section);
-  section.classList.add('section--hidden')
-})
-
-
-
+  section.classList.add('section--hidden');
+});
 
 ////////////////////////////////////////////////////////////////////////////Lazy loading images
 const imgTargets = document.querySelectorAll('.features__img');
 console.log(imgTargets);
 
-function revealImg(entries, observer){
-
+function revealImg(entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+  if(entry.isIntersecting){
+    entry.target.classList.remove('lazy-img');
+    entry.target.src = entry.target.dataset.src;
+  }
 }
-
 
 const imgObserver = new IntersectionObserver(revealImg, {
   root: null,
-  threshold: 0.2
-})
+  threshold: 0.2,
+});
 
+imgTargets.forEach(img => imgObserver.observe(img));
 
 /////////////////////////////////////////////////////
 ////////////Selecting elements
