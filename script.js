@@ -232,6 +232,25 @@ allSections.forEach(section => {
   sectionObserver.observe(section);
   section.classList.add('section--hidden')
 })
+
+
+
+
+////////////////////////////////////////////////////////////////////////////Lazy loading images
+const imgTargets = document.querySelectorAll('.features__img');
+console.log(imgTargets);
+
+function revealImg(entries, observer){
+  
+}
+
+
+const imgObserver = new IntersectionObserver(revealImg, {
+  root: null,
+  threshold: 0.2
+})
+
+
 /////////////////////////////////////////////////////
 ////////////Selecting elements
 // console.log(document.documentElement);
