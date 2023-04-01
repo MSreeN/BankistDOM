@@ -209,7 +209,7 @@ observer.observe(header);
 //////////Revealing elements on scroll
 const allSections = document.querySelectorAll('.section');
 console.log(allSections);
-
+//In this function we also need observer because here we are selecting multiple sections which is not like single nav element which we did earlier (there we didn't use observer), we can get the details of the target that is currently in the view port from this observer that is generated when target entered root.
 function revealSection(entries, observer){
   const [entry] = entries;
   console.log(entry);
@@ -241,7 +241,7 @@ const imgTargets = document.querySelectorAll('.features__img');
 console.log(imgTargets);
 
 function revealImg(entries, observer){
-  
+
 }
 
 
