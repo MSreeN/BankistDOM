@@ -236,14 +236,26 @@ function revealImg(entries, observer) {
   const [entry] = entries;
   console.log(entry);
   if(entry.isIntersecting){
-    entry.target.classList.remove('lazy-img');
+    //There's a bug with the line below.
+    //The bug is we are removing the blur class right when the img enters viewport and then replacing the image(this replacing the image happens in the background , js finds the image it should replace and replaces it).If the users internet is very slow that it can't load the high quality image like the one we are replacing here it will take some time to load but we are removing the class before loading the img, if real image isn't loaded then which means user can still see the poor quality image because we removed the blur class, this will make the website look bad
+
+    // entry.target.classList.remove('lazy-img');
+
     entry.target.src = entry.target.dataset.src;
+
+    // So what should we do here is to remove the blur class when load event is generated, js will emit load event once it finished loading image.
+    //We will listen for the event and do something which here is removing blur class.
+    entry.target.addEventListener('load', function(e){
+      entry.target.classList.remove('lazy-img')
+    })
+    observer.unobserve(entry.target)
   }
 }
 
 const imgObserver = new IntersectionObserver(revealImg, {
   root: null,
-  threshold: 0.2,
+  threshold: 0,
+  rootMargin: '200px'
 });
 
 imgTargets.forEach(img => imgObserver.observe(img));
