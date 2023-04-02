@@ -225,7 +225,7 @@ const sectionObserver = new IntersectionObserver(revealSection, {
 
 allSections.forEach(section => {
   sectionObserver.observe(section);
-  section.classList.add('section--hidden');
+  // section.classList.add('section--hidden');
 });
 
 ////////////////////////////////////////////////////////////////////////////Lazy loading images
@@ -262,8 +262,23 @@ imgTargets.forEach(img => imgObserver.observe(img));
 
 ///////////////////////////////////////////////////////////
 /////Slider component
+const slider = document.querySelector('.slider');
+// slider.style.transform = "scale(0.5) translateX(-800px)";
+slider.style.overflow = "visible";
+const slides = document.querySelectorAll('.slide');
+slides.forEach((slide, i)=> {
+  slide.style.transform = `translateX(${110*i}%)`
+})
 
+const btnLeft = document.querySelector('.slider__btn--left')
+const btnRight = document.querySelector('.slider__btn--right')
 
+/////adding event listeners to those buttons
+btnRight.addEventListener('click', function(e){
+  slides.forEach((slide,i) => {
+    slide.style.transform = `translateX(${110 * (i-1)}%)`
+  })
+})
 
 
 
