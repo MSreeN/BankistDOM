@@ -272,14 +272,27 @@ slides.forEach((slide, i)=> {
 
 const btnLeft = document.querySelector('.slider__btn--left')
 const btnRight = document.querySelector('.slider__btn--right')
-
+let currSlide = 0;
+let noOfSlides = slides.length;
 /////adding event listeners to those buttons
 btnRight.addEventListener('click', function(e){
+  currSlide++;
+  
   slides.forEach((slide,i) => {
-    slide.style.transform = `translateX(${110 * (i-1)}%)`
+    slide.style.transform = `translateX(${110 * (i-currSlide)}%)`
   })
 })
 
+btnLeft.addEventListener('click', function(e){
+  currSlide--;
+  if(currSlide > noOfSlides){
+    slides.forEach((slide, i) => {
+      currSlide--;
+      slide.style.transform = `translateX(${110* (i-currSlide)}%)`
+    })
+  }
+  
+})
 
 
 
