@@ -260,6 +260,14 @@ const imgObserver = new IntersectionObserver(revealImg, {
 
 imgTargets.forEach(img => imgObserver.observe(img));
 
+///////////////////////////////////////////////////////////
+/////Slider component
+
+
+
+
+
+
 /////////////////////////////////////////////////////
 ////////////Selecting elements
 // console.log(document.documentElement);
