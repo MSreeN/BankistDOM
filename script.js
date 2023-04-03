@@ -283,9 +283,7 @@ btnRight.addEventListener('click', function(e){
     currSlide++;
     // console.log(noOfSlides,currSlide);
   }
-  slides.forEach((slide,i) => {
-    slide.style.transform = `translateX(${110 * (i-currSlide)}%)`
-  })
+  goToSlide(currSlide);
 
 })
 
@@ -296,13 +294,16 @@ btnLeft.addEventListener('click', function(e){
   else{
     currSlide--;
   }
-  slides.forEach((slide, i) =>{
-    slide.style.transform = `translateX(${110 * (i - currSlide)}%)`
-  })
+  goToSlide(currSlide)
   }
   
 )
 
+function goToSlide(currSlide){
+  slides.forEach((slide, i) =>{
+    slide.style.transform = `translateX(${110 * (i - currSlide)}%)`
+  })
+}
 
 
 /////////////////////////////////////////////////////
