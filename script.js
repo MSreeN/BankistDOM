@@ -264,7 +264,7 @@ imgTargets.forEach(img => imgObserver.observe(img));
 /////Slider component
 const slider = document.querySelector('.slider');
 // slider.style.transform = "scale(0.5) translateX(-800px)";
-slider.style.overflow = "visible";
+slider.style.overflow = "hidden";
 const slides = document.querySelectorAll('.slide');
 slides.forEach((slide, i)=> {
   slide.style.transform = `translateX(${110*i}%)`
@@ -276,23 +276,32 @@ let currSlide = 0;
 let noOfSlides = slides.length;
 /////adding event listeners to those buttons
 btnRight.addEventListener('click', function(e){
-  currSlide++;
-  
+  if(currSlide === noOfSlides-1){
+    currSlide = 0;
+  }
+  else{
+    currSlide++;
+    // console.log(noOfSlides,currSlide);
+  }
   slides.forEach((slide,i) => {
     slide.style.transform = `translateX(${110 * (i-currSlide)}%)`
   })
+
 })
 
 btnLeft.addEventListener('click', function(e){
-  currSlide--;
-  if(currSlide > noOfSlides){
-    slides.forEach((slide, i) => {
-      currSlide--;
-      slide.style.transform = `translateX(${110* (i-currSlide)}%)`
-    })
+  if(currSlide === 0){
+    currSlide = 3;
+  }
+  else{
+    currSlide--;
+  }
+  slides.forEach((slide, i) =>{
+    slide.style.transform = `translateX(${110 * (i - currSlide)}%)`
+  })
   }
   
-})
+)
 
 
 
