@@ -289,7 +289,7 @@ btnRight.addEventListener('click', function(e){
 
 btnLeft.addEventListener('click', function(e){
   if(currSlide === 0){
-    currSlide = 3;
+    currSlide = noOfSlides -1;
   }
   else{
     currSlide--;
