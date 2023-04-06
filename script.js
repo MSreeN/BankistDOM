@@ -275,27 +275,33 @@ const btnRight = document.querySelector('.slider__btn--right')
 let currSlide = 0;
 let noOfSlides = slides.length;
 /////adding event listeners to those buttons
-
-
-btnRight.addEventListener('click', function(e){
-  if(currSlide === noOfSlides-1){
+const nextSlide = () => {
+  if(currSlide === noOfSlides -1){
     currSlide = 0;
   }
+
   else{
     currSlide++;
-    // console.log(noOfSlides,currSlide);
   }
   goToSlide(currSlide);
-
-})
-
-btnLeft.addEventListener('click', function(e){
+}
+const prevSlide = () => {
   if(currSlide === 0){
-    currSlide = noOfSlides -1;
+    currSlide = noOfSlides-1;
   }
   else{
     currSlide--;
   }
+  goToSlide(currSlide);
+}
+
+btnRight.addEventListener('click', function(e){
+  nextSlide();
+  goToSlide(currSlide);
+})
+
+btnLeft.addEventListener('click', function(e){
+  prevSlide();
   goToSlide(currSlide)
   }
   
@@ -303,23 +309,11 @@ btnLeft.addEventListener('click', function(e){
 
 document.addEventListener('keydown', function(e){
   if(e.key == "ArrowRight"){
-    if(currSlide === noOfSlides-1){
-      currSlide = 0;
-      console.log("last");
-    }
-    else{
-      currSlide++;
-      console.log(currSlide);
-    }
+    nextSlide();
     goToSlide(currSlide)
   }
   else if(e.key === "ArrowLeft"){
-    if(currSlide === 0){
-      currSlide = noOfSlides-1;
-    }
-    else{
-      currSlide--;
-    }
+    prevSlide();
     goToSlide(currSlide);
   }
 })
