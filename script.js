@@ -275,6 +275,8 @@ const btnRight = document.querySelector('.slider__btn--right')
 let currSlide = 0;
 let noOfSlides = slides.length;
 /////adding event listeners to those buttons
+
+
 btnRight.addEventListener('click', function(e){
   if(currSlide === noOfSlides-1){
     currSlide = 0;
@@ -298,6 +300,29 @@ btnLeft.addEventListener('click', function(e){
   }
   
 )
+
+document.addEventListener('keydown', function(e){
+  if(e.key == "ArrowRight"){
+    if(currSlide === noOfSlides-1){
+      currSlide = 0;
+      console.log("last");
+    }
+    else{
+      currSlide++;
+      console.log(currSlide);
+    }
+    goToSlide(currSlide)
+  }
+  else if(e.key === "ArrowLeft"){
+    if(currSlide === 0){
+      currSlide = noOfSlides-1;
+    }
+    else{
+      currSlide--;
+    }
+    goToSlide(currSlide);
+  }
+})
 
 function goToSlide(currSlide){
   slides.forEach((slide, i) =>{
