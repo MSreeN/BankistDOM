@@ -308,14 +308,8 @@ btnLeft.addEventListener('click', function(e){
 )
 
 document.addEventListener('keydown', function(e){
-  if(e.key == "ArrowRight"){
-    nextSlide();
-    goToSlide(currSlide)
-  }
-  else if(e.key === "ArrowLeft"){
-    prevSlide();
-    goToSlide(currSlide);
-  }
+  e.key === "ArrowRight" && nextSlide();
+  e.key === "ArrowLeft" && prevSlide();
 })
 
 function goToSlide(currSlide){
