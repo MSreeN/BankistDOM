@@ -319,6 +319,25 @@ function goToSlide(currSlide){
 }
 
 
+//////////////////////////////////////////////////////
+////////////////////dots
+const dotContainer =  document.querySelector(".dots")
+const createDots = () => {
+  slides.forEach(function(_, i){
+    dotContainer.insertAdjacentHTML("beforeend", `<button class = "dots__dot" data-slide = "${i}"></button>`)
+  })
+}
+
+createDots();
+
+dotContainer.addEventListener('click', function(e){
+  console.log(e);
+  if(e.target.classList.contains("dots__dot")){
+    goToSlide(e.target.dataset.slide);
+    
+  }
+})
+
 /////////////////////////////////////////////////////
 ////////////Selecting elements
 // console.log(document.documentElement);
