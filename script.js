@@ -315,6 +315,7 @@ document.addEventListener('keydown', function(e){
 function goToSlide(currSlide){
   slides.forEach((slide, i) =>{
     slide.style.transform = `translateX(${110 * (i - currSlide)}%)`
+    activateDot(currSlide);
   })
 }
 
@@ -329,12 +330,18 @@ const createDots = () => {
 }
 
 createDots();
+const activateDot = function(slide){
+  const dots = document.querySelectorAll(".dots__dot");
+  dots.forEach(dot => {
+    dot.classList.remove("dots__dot--active")
+  })
 
+}
 dotContainer.addEventListener('click', function(e){
   console.log(e);
   if(e.target.classList.contains("dots__dot")){
     goToSlide(e.target.dataset.slide);
-    
+
   }
 })
 
