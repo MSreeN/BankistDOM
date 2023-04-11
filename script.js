@@ -523,14 +523,15 @@ console.log(child);
 //If we have any code that should be executed only after the dom is available or ready or you can use script tag, browser only finds the script tag only when the dom is ready
 
 document.addEventListener('DOMContentLoaded', function(e){
-  console.log("html parsed");
-  console.log(e);
+  // console.log("html parsed");
+  // console.log(e);
 })
 
 
 //2. beforeunLoad 
 //This event is immediately created before use click on close button of tab
 window.addEventListener('beforeunLoad', function(e){
+  e.preventDefault();
   console.log(e);
-  e.returnValue = " ";
+  e.returnValue = "Unsaved";
 })
