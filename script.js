@@ -510,3 +510,27 @@ console.log(child);
     // ele.style.backgroundColor = "red"
   }
 });
+
+
+
+
+/////////Life cycle Event Doms
+
+
+//1. Dom content loaded event(DOMContentLoaded):
+//this event is generated when the html is parsed or when the html is downloaded and converted into dom tree.
+//This event doesn't wait for images or any other external resources to load, just html and js needs to be loaded  
+//If we have any code that should be executed only after the dom is available or ready or you can use script tag, browser only finds the script tag only when the dom is ready
+
+document.addEventListener('DOMContentLoaded', function(e){
+  console.log("html parsed");
+  console.log(e);
+})
+
+
+//2. beforeunLoad 
+//This event is immediately created before use click on close button of tab
+window.addEventListener('beforeunLoad', function(e){
+  console.log(e);
+  e.returnValue = " ";
+})
