@@ -176,7 +176,7 @@ tabContainer.addEventListener('click', function(e){
       // if(tab)
       content.classList.remove("operations__content--active")
     })
-    document.querySelector(`.operations__content--${e.target.dataset.tab}`).classList.add("operations__content--active");
+    document.querySelector(`.operations__content--${ele.dataset.tab}`).classList.add("operations__content--active");
   }
 })
 
