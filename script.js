@@ -104,15 +104,28 @@ btnScrollTo.addEventListener('click', function(e){
 //Instead of adding click function to every nav like we did above, we make use of event delegation where we will attach that click function to parent element which is common to all navigation anchor tags like ".nav__links".
 // so when we click on the any of the nav element it will cause click event and that event will bubble up to the top of the document and in the way we have parent element of nav__link which is "nav__links" click event function will execute in the bubbling phase.
 // We were able to navigate to the respective section when clicked on the respective nav__link by using e.target, this will give the target element on which click event is generated and which caused the click event function in the parent element nav__links to execute during the bubbling phase and we are getting the section id which is hard coded in the html and set the "scrollIntoView" on that particular e.target element.
+/////////////////////////////////LearntD
 
-document.querySelector('.nav__links').addEventListener('click', e => {
-  e.preventDefault();
-  const id = e.target.getAttribute('href');
-  //Matching technique
-  if (e.target.classList.contains('nav__link')) {
-    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+// document.querySelector('.nav__links').addEventListener('click', e => {
+//   e.preventDefault();
+//   const id = e.target.getAttribute('href');
+//   //Matching technique
+//   if (e.target.classList.contains('nav__link')) {
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   }
+// });
+
+//////////////////////////////////////////LearntU
+
+///////////////////////////////Own coding
+
+nav.addEventListener('click', function(e){
+  if(e.target.classList.contains('nav__link')){
+    e.preventDefault();
+    console.log(e.target.getAttribute("href"));
+    document.querySelector(e.target.getAttribute("href")).scrollIntoView({behavior: "smooth"})
   }
-});
+})
 
 ////////////////////////////////////////////////////////
 /////////////////////Tabbed Component
