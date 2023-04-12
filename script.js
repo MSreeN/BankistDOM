@@ -39,21 +39,21 @@ document.addEventListener('keydown', function (e) {
 ///////////////Implementing smooth scrolling
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
-
-btnScrollTo.addEventListener('click', function (e) {
-  console.log(e.target.getBoundingClientRect());
-  const s1coords = section1.getBoundingClientRect();
-  console.log(s1coords);
-  /////////////to get the scroll bar position
-  console.log('Scroll bar position (x/y)', window.scrollX, '/', scrollY);
-  ////to get the current window width and height
-  console.log(
-    'height/width viewport',
-    document.documentElement.clientHeight,
-    '/',
-    document.documentElement.clientWidth
-  );
-
+/////////////////////LearntD
+// btnScrollTo.addEventListener('click', function (e) {
+//   console.log(e.target.getBoundingClientRect());
+//   const s1coords = section1.getBoundingClientRect();
+//   console.log(s1coords);
+//   /////////////to get the scroll bar position
+//   console.log('Scroll bar position (x/y)', window.scrollX, '/', scrollY);
+//   ////to get the current window width and height
+//   console.log(
+//     'height/width viewport',
+//     document.documentElement.clientHeight,
+//     '/',
+//     document.documentElement.clientWidth
+//   );
+////////////////////////////////////////////////////learntU
   ///Scrolling
   //by adding scrollY to the top makes the position of the section relative to the page top not to the viewport
   //Normal scrolling and old way
@@ -68,8 +68,26 @@ btnScrollTo.addEventListener('click', function (e) {
   // });
 
   //Smooth scrolling (only supported in modern browsers)
-  section1.scrollIntoView({ behavior: 'smooth' });
-});
+  //////////////////////////////////////////////learntD
+//   section1.scrollIntoView({ behavior: 'smooth' });
+// });
+///////////////////////////////////////////////LearntU
+
+
+/////////////////////Own coding
+
+btnScrollTo.addEventListener('click', function(e){
+  const s1coords = section1.getBoundingClientRect();
+  const topValue = window.scrollY;
+  // window.scrollTo({
+  //   left: s1coords.left,
+  //   top: s1coords.top+ topValue ,
+  //   behavior: "smooth"
+  // })
+  section1.scrollIntoView({behavior: "smooth"});
+  // console.log(section1.getBoundingClientRect(), window.scrollY);
+})
+
 
 ////////////////////////////////////////
 ///////page navigation
@@ -99,7 +117,7 @@ document.querySelector('.nav__links').addEventListener('click', e => {
 ////////////////////////////////////////////////////////
 /////////////////////Tabbed Component
 
-console.log(tabContainer);
+// console.log(tabContainer);
 tabContainer.addEventListener('click', function (e) {
   const className = e.target.closest('.operations__tab');
   // console.log(className);
@@ -205,7 +223,7 @@ observer.observe(header);
 
 //////////Revealing elements on scroll
 const allSections = document.querySelectorAll('.section');
-console.log(allSections);
+// console.log(allSections);
 //In this function we also need observer because here we are selecting multiple sections which is not like single nav element which we did earlier (there we didn't use observer), we can get the details of the target that is currently in the view port from this observer that is generated when target entered root.
 function revealSection(entries, observer) {
   const [entry] = entries;
@@ -230,11 +248,11 @@ allSections.forEach(section => {
 
 ////////////////////////////////////////////////////////////////////////////Lazy loading images
 const imgTargets = document.querySelectorAll('.features__img');
-console.log(imgTargets);
+// console.log(imgTargets);
 
 function revealImg(entries, observer) {
   const [entry] = entries;
-  console.log(entry);
+  // console.log(entry);
   if(entry.isIntersecting){
     //There's a bug with the line below.
     //The bug is we are removing the blur class right when the img enters viewport and then replacing the image(this replacing the image happens in the background , js finds the image it should replace and replaces it).If the users internet is very slow that it can't load the high quality image like the one we are replacing here it will take some time to load but we are removing the class before loading the img, if real image isn't loaded then which means user can still see the poor quality image because we removed the blur class, this will make the website look bad
@@ -488,7 +506,7 @@ document.querySelector('.nav').addEventListener('click', function (e) {
 ////////////////////////////////////////////////////
 ////////////////////////DOM Traversing
 
-console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.querySelectorAll('.highlight'));
 /////to get all the children
 const sp = document.createElement('span');
 sp.textContent = 'hello';
@@ -497,14 +515,14 @@ sp.textContent = 'hello';
 // h1.children[2].style.color = "white"
 
 /////////////////Going upwards: parents
-console.log(h1.parentElement);
-console.log(h1.closest('.smp'));
+// console.log(h1.parentElement);
+// console.log(h1.closest('.smp'));
 
 ////////////////////getting siblings
 
-console.log(h1.previousElementSibling);
+// console.log(h1.previousElementSibling);
 const child = h1.parentElement.children;
-console.log(child);
+// console.log(child);
 [...child].forEach(ele => {
   if (ele !== h1) {
     // ele.style.backgroundColor = "red"
