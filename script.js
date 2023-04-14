@@ -226,6 +226,9 @@ const handleHover = function(e) {
 
 nav.addEventListener('mouseover', handleHover.bind('50%'));
 nav.addEventListener('mouseout', handleHover.bind("100%"))
+
+
+
 /////////////////////////////////////////////////////////
 ///////////////making navigation sticky
 
