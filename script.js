@@ -54,29 +54,28 @@ const section1 = document.querySelector('#section--1');
 //     document.documentElement.clientWidth
 //   );
 ////////////////////////////////////////////////////learntU
-  ///Scrolling
-  //by adding scrollY to the top makes the position of the section relative to the page top not to the viewport
-  //Normal scrolling and old way
+///Scrolling
+//by adding scrollY to the top makes the position of the section relative to the page top not to the viewport
+//Normal scrolling and old way
 
-  // window.scrollTo(s1coords.left, s1coords.top+scrollY);
+// window.scrollTo(s1coords.left, s1coords.top+scrollY);
 
-  //smooth scrolling (old school way)
-  // window.scrollTo({
-  //   left: s1coords.left,
-  //   top: s1coords.top + scrollY,
-  //   behavior: 'smooth'
-  // });
+//smooth scrolling (old school way)
+// window.scrollTo({
+//   left: s1coords.left,
+//   top: s1coords.top + scrollY,
+//   behavior: 'smooth'
+// });
 
-  //Smooth scrolling (only supported in modern browsers)
-  //////////////////////////////////////////////learntD
+//Smooth scrolling (only supported in modern browsers)
+//////////////////////////////////////////////learntD
 //   section1.scrollIntoView({ behavior: 'smooth' });
 // });
 ///////////////////////////////////////////////LearntU
 
-
 /////////////////////Own coding
 
-btnScrollTo.addEventListener('click', function(e){
+btnScrollTo.addEventListener('click', function (e) {
   const s1coords = section1.getBoundingClientRect();
   const topValue = window.scrollY;
   // window.scrollTo({
@@ -84,10 +83,9 @@ btnScrollTo.addEventListener('click', function(e){
   //   top: s1coords.top+ topValue ,
   //   behavior: "smooth"
   // })
-  section1.scrollIntoView({behavior: "smooth"});
+  section1.scrollIntoView({ behavior: 'smooth' });
   // console.log(section1.getBoundingClientRect(), window.scrollY);
-})
-
+});
 
 ////////////////////////////////////////
 ///////page navigation
@@ -119,17 +117,18 @@ btnScrollTo.addEventListener('click', function(e){
 
 ///////////////////////////////Own coding
 
-nav.addEventListener('click', function(e){
-  if(e.target.classList.contains('nav__link')){
+nav.addEventListener('click', function (e) {
+  if (e.target.classList.contains('nav__link')) {
     e.preventDefault();
-    console.log(e.target.getAttribute("href"));
-    document.querySelector(e.target.getAttribute("href")).scrollIntoView({behavior: "smooth"})
+    console.log(e.target.getAttribute('href'));
+    document
+      .querySelector(e.target.getAttribute('href'))
+      .scrollIntoView({ behavior: 'smooth' });
   }
-})
+});
 
 ////////////////////////////////////////////////////////
 /////////////////////Tabbed Component
-
 
 /////////////////////////////LearntD
 // console.log(tabContainer);
@@ -162,24 +161,24 @@ nav.addEventListener('click', function(e){
 // });
 ////////////////////////////////learntU
 
-
 ////////////////////////////////own coding
 
-tabContainer.addEventListener('click', function(e){
-  const ele = e.target.closest(".operations__tab")
-  if(ele){
-    tabs.forEach( tab => {
-      tab.classList.remove("operations__tab--active")
-    })
-    ele.classList.add("operations__tab--active");
-    tabContent.forEach( content => {
+tabContainer.addEventListener('click', function (e) {
+  const ele = e.target.closest('.operations__tab');
+  if (ele) {
+    tabs.forEach(tab => {
+      tab.classList.remove('operations__tab--active');
+    });
+    ele.classList.add('operations__tab--active');
+    tabContent.forEach(content => {
       // if(tab)
-      content.classList.remove("operations__content--active")
-    })
-    document.querySelector(`.operations__content--${ele.dataset.tab}`).classList.add("operations__content--active");
+      content.classList.remove('operations__content--active');
+    });
+    document
+      .querySelector(`.operations__content--${ele.dataset.tab}`)
+      .classList.add('operations__content--active');
   }
-})
-
+});
 
 /////////////////////////////////////////////////////////
 //////////Menu fade animation
@@ -211,17 +210,22 @@ tabContainer.addEventListener('click', function(e){
 
 //////////////////////////////////////////own coding
 
-
-const handleHover = e => {
-  if(e.target.classList.contains('nav__link')){
+const handleHover = function(e) {
+  if (e.target.classList.contains('nav__link')) {
     const link = e.target;
-    const siblings = link.closest(".nav__links").querySelectorAll('.nav__link');
-    
+    const siblings = link.closest('.nav__links').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('.nav__logo');
+    siblings.forEach(ele => {
+      if (ele !== link) {
+        ele.style.opacity = this;
+      }
+    });
+    logo.style.opacity = this;
   }
-}
+};
 
-nav.addEventListener('mouseover',handleHover)
-
+nav.addEventListener('mouseover', handleHover.bind('50%'));
+nav.addEventListener('mouseout', handleHover.bind("100%"))
 /////////////////////////////////////////////////////////
 ///////////////making navigation sticky
 
@@ -303,7 +307,7 @@ const imgTargets = document.querySelectorAll('.features__img');
 function revealImg(entries, observer) {
   const [entry] = entries;
   // console.log(entry);
-  if(entry.isIntersecting){
+  if (entry.isIntersecting) {
     //There's a bug with the line below.
     //The bug is we are removing the blur class right when the img enters viewport and then replacing the image(this replacing the image happens in the background , js finds the image it should replace and replaces it).If the users internet is very slow that it can't load the high quality image like the one we are replacing here it will take some time to load but we are removing the class before loading the img, if real image isn't loaded then which means user can still see the poor quality image because we removed the blur class, this will make the website look bad
 
@@ -313,121 +317,112 @@ function revealImg(entries, observer) {
 
     // So what should we do here is to remove the blur class when load event is generated, js will emit load event once it finished loading image.
     //We will listen for the event and do something which here is removing blur class.
-    entry.target.addEventListener('load', function(e){
-      entry.target.classList.remove('lazy-img')
-    })
-    observer.unobserve(entry.target)
+    entry.target.addEventListener('load', function (e) {
+      entry.target.classList.remove('lazy-img');
+    });
+    observer.unobserve(entry.target);
   }
 }
 
 const imgObserver = new IntersectionObserver(revealImg, {
   root: null,
   threshold: 0,
-  rootMargin: '200px'
+  rootMargin: '200px',
 });
 
 imgTargets.forEach(img => imgObserver.observe(img));
 
 ///////////////////////////////////////////////////////////
 /////Slider component
-const slider = function(){
+const slider = function () {
+  const slider = document.querySelector('.slider');
+  // slider.style.transform = "scale(0.5) translateX(-800px)";
+  // slider.style.overflow = "hidden";
+  const slides = document.querySelectorAll('.slide');
+  slides.forEach((slide, i) => {
+    slide.style.transform = `translateX(${110 * i}%)`;
+  });
 
-const slider = document.querySelector('.slider');
-// slider.style.transform = "scale(0.5) translateX(-800px)";
-// slider.style.overflow = "hidden";
-const slides = document.querySelectorAll('.slide');
-slides.forEach((slide, i)=> {
-  slide.style.transform = `translateX(${110*i}%)`
-})
+  const btnLeft = document.querySelector('.slider__btn--left');
+  const btnRight = document.querySelector('.slider__btn--right');
+  let currSlide = 0;
+  let noOfSlides = slides.length;
+  /////adding event listeners to those buttons
 
-const btnLeft = document.querySelector('.slider__btn--left')
-const btnRight = document.querySelector('.slider__btn--right')
-let currSlide = 0;
-let noOfSlides = slides.length;
-/////adding event listeners to those buttons
+  const nextSlide = () => {
+    if (currSlide === noOfSlides - 1) {
+      currSlide = 0;
+    } else {
+      currSlide++;
+    }
+    goToSlide(currSlide);
+  };
+  const prevSlide = () => {
+    if (currSlide === 0) {
+      currSlide = noOfSlides - 1;
+    } else {
+      currSlide--;
+    }
+    goToSlide(currSlide);
+  };
 
+  btnRight.addEventListener('click', function (e) {
+    nextSlide();
+    goToSlide(currSlide);
+  });
 
-const nextSlide = () => {
-  if(currSlide === noOfSlides -1){
-    currSlide = 0;
+  btnLeft.addEventListener('click', function (e) {
+    prevSlide();
+    goToSlide(currSlide);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    e.key === 'ArrowRight' && nextSlide();
+    e.key === 'ArrowLeft' && prevSlide();
+  });
+
+  const init = function () {
+    createDots();
+    goToSlide(currSlide);
+    activateDot(0);
+  };
+  function goToSlide(currSlide) {
+    slides.forEach((slide, i) => {
+      slide.style.transform = `translateX(${110 * (i - currSlide)}%)`;
+      activateDot(currSlide);
+    });
   }
 
-  else{
-    currSlide++;
+  //////////////////////////////////////////////////////
+  ////////////////////dots
+  const dotContainer = document.querySelector('.dots');
+  function createDots() {
+    slides.forEach(function (_, i) {
+      dotContainer.insertAdjacentHTML(
+        'beforeend',
+        `<button class = "dots__dot" data-slide = "${i}"></button>`
+      );
+    });
   }
-  goToSlide(currSlide);
-}
-const prevSlide = () => {
-  if(currSlide === 0){
-    currSlide = noOfSlides-1;
+
+  init();
+
+  function activateDot(slide) {
+    const dots = document.querySelectorAll('.dots__dot');
+    dots.forEach(dot => {
+      dot.classList.remove('dots__dot--active');
+      document
+        .querySelector(`.dots__dot[data-slide = "${slide}"]`)
+        .classList.add('dots__dot--active');
+    });
   }
-  else{
-    currSlide--;
-  }
-  goToSlide(currSlide);
-}
-
-btnRight.addEventListener('click', function(e){
-  nextSlide();
-  goToSlide(currSlide);
-})
-
-btnLeft.addEventListener('click', function(e){
-  prevSlide();
-  goToSlide(currSlide)
-  }
-  
-)
-
-document.addEventListener('keydown', function(e){
-  e.key === "ArrowRight" && nextSlide();
-  e.key === "ArrowLeft" && prevSlide();
-})
-
-const init = function(){
-  createDots();
-  goToSlide(currSlide);
-  activateDot(0);
-}
-function goToSlide(currSlide){
-  slides.forEach((slide, i) =>{
-    slide.style.transform = `translateX(${110 * (i - currSlide)}%)`
-    activateDot(currSlide);
-  })
-}
-
-
-//////////////////////////////////////////////////////
-////////////////////dots
-const dotContainer =  document.querySelector(".dots")
-function createDots() {
-  slides.forEach(function(_, i){
-    dotContainer.insertAdjacentHTML("beforeend", `<button class = "dots__dot" data-slide = "${i}"></button>`)
-  })
-}
-
-
-init();
-
-
-
-
-function activateDot(slide){
-  const dots = document.querySelectorAll(".dots__dot");
-  dots.forEach(dot => {
-    dot.classList.remove("dots__dot--active")
-    document.querySelector(`.dots__dot[data-slide = "${slide}"]`).classList.add("dots__dot--active");
-  })
-
-}
-dotContainer.addEventListener('click', function(e){
-  console.log(e);
-  if(e.target.classList.contains("dots__dot")){
-    goToSlide(e.target.dataset.slide);
-
-  }
-})
-}
+  dotContainer.addEventListener('click', function (e) {
+    console.log(e);
+    if (e.target.classList.contains('dots__dot')) {
+      goToSlide(e.target.dataset.slide);
+    }
+  });
+};
 slider();
 /////////////////////////////////////////////////////
 ////////////Selecting elements
@@ -579,27 +574,22 @@ const child = h1.parentElement.children;
   }
 });
 
-
-
-
 /////////Life cycle Event Doms
-
 
 //1. Dom content loaded event(DOMContentLoaded):
 //this event is generated when the html is parsed or when the html is downloaded and converted into dom tree.
-//This event doesn't wait for images or any other external resources to load, just html and js needs to be loaded  
+//This event doesn't wait for images or any other external resources to load, just html and js needs to be loaded
 //If we have any code that should be executed only after the dom is available or ready or you can use script tag, browser only finds the script tag only when the dom is ready
 
-document.addEventListener('DOMContentLoaded', function(e){
+document.addEventListener('DOMContentLoaded', function (e) {
   // console.log("html parsed");
   // console.log(e);
-})
+});
 
-
-//2. beforeunLoad 
+//2. beforeunLoad
 //This event is immediately created before use click on close button of tab
-window.addEventListener('beforeunLoad', function(e){
+window.addEventListener('beforeunLoad', function (e) {
   e.preventDefault();
   console.log(e);
-  e.returnValue = "Unsaved";
-})
+  e.returnValue = 'Unsaved';
+});
