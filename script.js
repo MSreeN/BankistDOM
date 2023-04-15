@@ -232,51 +232,75 @@ nav.addEventListener('mouseout', handleHover.bind("100%"))
 /////////////////////////////////////////////////////////
 ///////////////making navigation sticky
 
-btnScrollTo.addEventListener('mouseover', function (e) {
-  // console.log(section1.getBoundingClientRect());
-});
 
-window.addEventListener('scroll', function (e) {
-  let s1coords = section1.getBoundingClientRect();
-  //if(s1coords.y <= 0 )-- this also works
-  if (window.scrollY > s1coords.top + this.window.scrollY) {
-    // nav.classList.add('sticky');
-  } else {
-    // nav.classList.remove('sticky');
-  }
-});
+///////////////////////LearntD
+// btnScrollTo.addEventListener('mouseover', function (e) {
+//   // console.log(section1.getBoundingClientRect());
+// });
 
-////////////////////////////////////////////////////
-/////////////Intersection observer api
-///This callback will be called when target element is moving into the root and moving out of the root.
-const header = document.querySelector('header');
-header;
-const obsCallBack = (entries, observer) => {
-  //entries are the array of threshold entries.
-  //same as entries[0]
+// window.addEventListener('scroll', function (e) {
+//   let s1coords = section1.getBoundingClientRect();
+//   //if(s1coords.y <= 0 )-- this also works
+//   if (window.scrollY > s1coords.top + this.window.scrollY) {
+//     // nav.classList.add('sticky');
+//   } else {
+//     // nav.classList.remove('sticky');
+//   }
+// });
+
+// ////////////////////////////////////////////////////
+// /////////////Intersection observer api
+// ///This callback will be called when target element is moving into the root and moving out of the root.
+// const header = document.querySelector('header');
+// header;
+// const obsCallBack = (entries, observer) => {
+//   //entries are the array of threshold entries.
+//   //same as entries[0]
+//   const [entry] = entries;
+//   if (!entry.isIntersecting) {
+//     nav.classList.add('sticky');
+//     // console.log(nav.offsetHeight);
+//   } else {
+//     nav.classList.remove('sticky');
+//   }
+//   // if(entries.)
+// };
+
+// const obsOptions = {
+//   root: null, // if null then root will be viewport
+//   //threshold is the amount / percentage of the target element that should be visible within the root element(viewport here), if this condition satisfies then the callback will be executed.
+//   //what i understood is when the mentioned threshold value is satisfied that means when 0 percent or more than 0 percent is visible in root element callback function gets executed and isIntersecting is set to true and when less than mentioned threshold value is visible in root element then isIntersecting is set to false
+//   threshold: [0],
+//   //should be specified in px/%
+//   rootMargin: `-${nav.offsetHeight}px`,
+// };
+
+// ////create new intersection observer
+// const observer = new IntersectionObserver(obsCallBack, obsOptions);
+// //observing target element
+// observer.observe(header);
+////////////////////////////////LearntU
+
+//////////////////////////own coding
+const header = document.querySelector(".header")
+function navObserverHandler(entries, observer){
   const [entry] = entries;
-  if (!entry.isIntersecting) {
-    nav.classList.add('sticky');
-    // console.log(nav.offsetHeight);
-  } else {
-    nav.classList.remove('sticky');
+  console.log(entry);
+  if(entry.isIntersecting){
+    nav.classList.remove("sticky");
   }
-  // if(entries.)
-};
+  else{
+    nav.classList.add("sticky");
+  }
+}
 
-const obsOptions = {
-  root: null, // if null then root will be viewport
-  //threshold is the amount / percentage of the target element that should be visible within the root element(viewport here), if this condition satisfies then the callback will be executed.
-  //what i understood is when the mentioned threshold value is satisfied that means when 0 percent or more than 0 percent is visible in root element callback function gets executed and isIntersecting is set to true and when less than mentioned threshold value is visible in root element then isIntersecting is set to false
-  threshold: [0],
-  //should be specified in px/%
-  rootMargin: `-${nav.offsetHeight}px`,
-};
+const navObserver = new IntersectionObserver(navObserverHandler, {
+  root: null,
+  threshold: [0], 
+  rootMargin: `-${nav.offsetHeight}px`
+})
 
-////create new intersection observer
-const observer = new IntersectionObserver(obsCallBack, obsOptions);
-//observing target element
-observer.observe(header);
+navObserver.observe(header);
 
 //////////Revealing elements on scroll
 const allSections = document.querySelectorAll('.section');
