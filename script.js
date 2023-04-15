@@ -210,7 +210,7 @@ tabContainer.addEventListener('click', function (e) {
 
 //////////////////////////////////////////own coding
 
-const handleHover = function(e) {
+const handleHover = function (e) {
   if (e.target.classList.contains('nav__link')) {
     const link = e.target;
     const siblings = link.closest('.nav__links').querySelectorAll('.nav__link');
@@ -225,13 +225,10 @@ const handleHover = function(e) {
 };
 
 nav.addEventListener('mouseover', handleHover.bind('50%'));
-nav.addEventListener('mouseout', handleHover.bind("100%"))
-
-
+nav.addEventListener('mouseout', handleHover.bind('100%'));
 
 /////////////////////////////////////////////////////////
 ///////////////making navigation sticky
-
 
 ///////////////////////LearntD
 // btnScrollTo.addEventListener('mouseover', function (e) {
@@ -282,51 +279,76 @@ nav.addEventListener('mouseout', handleHover.bind("100%"))
 ////////////////////////////////LearntU
 
 //////////////////////////own coding
-const header = document.querySelector(".header")
-function navObserverHandler(entries, observer){
+const header = document.querySelector('.header');
+function navObserverHandler(entries, observer) {
   const [entry] = entries;
-  console.log(entry);
-  if(entry.isIntersecting){
-    nav.classList.remove("sticky");
-  }
-  else{
-    nav.classList.add("sticky");
+  // console.log(entry);
+  if (entry.isIntersecting) {
+    nav.classList.remove('sticky');
+  } else {
+    nav.classList.add('sticky');
   }
 }
 
 const navObserver = new IntersectionObserver(navObserverHandler, {
   root: null,
-  threshold: [0], 
-  rootMargin: `-${nav.offsetHeight}px`
-})
+  threshold: [0],
+  rootMargin: `-${nav.offsetHeight}px`,
+});
 
 navObserver.observe(header);
 
 //////////Revealing elements on scroll
-const allSections = document.querySelectorAll('.section');
-// console.log(allSections);
-//In this function we also need observer because here we are selecting multiple sections which is not like single nav element which we did earlier (there we didn't use observer), we can get the details of the target that is currently in the view port from this observer that is generated when target entered root.
-function revealSection(entries, observer) {
+
+////////////////////////////////LearntD
+// const allSections = document.querySelectorAll('.section');
+// // console.log(allSections);
+// //In this function we also need observer because here we are selecting multiple sections which is not like single nav element which we did earlier (there we didn't use observer), we can get the details of the target that is currently in the view port from this observer that is generated when target entered root.
+// function revealSection(entries, observer) {
+//   const [entry] = entries;
+//   // console.log(entry);
+//   if (entry.isIntersecting) {
+//     entry.target.classList.remove('section--hidden');
+//     observer.unobserve(entry.target);
+//   } else {
+//     entry.target.classList.add('section--hidden');
+//   }
+// }
+
+// const sectionObserver = new IntersectionObserver(revealSection, {
+//   root: null,
+//   threshold: 0.1,
+// });
+
+// allSections.forEach(section => {
+//   sectionObserver.observe(section);
+//   // section.classList.add('section--hidden');
+// });
+//////////////////////////////LearntU
+//////////////////////////////////Own coding
+
+const sections = document.querySelectorAll('.section');
+function elementObserverHandler(entries, observer) {
   const [entry] = entries;
-  // console.log(entry);
-  if (entry.isIntersecting) {
-    entry.target.classList.remove('section--hidden');
-    observer.unobserve(entry.target);
-  } else {
-    entry.target.classList.add('section--hidden');
+  console.log(entry);
+  if(entry.isIntersecting){
+    entry.target.classList.remove("section--hidden");
+    observer.unobserve(entry.target)
+  }
+  else{
+    entry.target.classList.add("section--hidden");
   }
 }
 
-const sectionObserver = new IntersectionObserver(revealSection, {
+const eleObserver = new IntersectionObserver(elementObserverHandler, {
   root: null,
-  threshold: 0.1,
+  threshold: [0.1],
 });
 
-allSections.forEach(section => {
-  sectionObserver.observe(section);
-  // section.classList.add('section--hidden');
+sections.forEach(section => {
+  eleObserver.observe(section);
+  section.classList.add("section--hidden")
 });
-
 ////////////////////////////////////////////////////////////////////////////Lazy loading images
 const imgTargets = document.querySelectorAll('.features__img');
 // console.log(imgTargets);
