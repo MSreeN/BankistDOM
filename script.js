@@ -336,7 +336,7 @@ function elementObserverHandler(entries, observer) {
     observer.unobserve(entry.target)
   }
   else{
-    entry.target.classList.add("section--hidden");
+    // entry.target.classList.add("section--hidden");
   }
 }
 
@@ -347,7 +347,7 @@ const eleObserver = new IntersectionObserver(elementObserverHandler, {
 
 sections.forEach(section => {
   eleObserver.observe(section);
-  section.classList.add("section--hidden")
+  // section.classList.add("section--hidden")
 });
 ////////////////////////////////////////////////////////////////////////////Lazy loading images
 const imgTargets = document.querySelectorAll('.features__img');
