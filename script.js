@@ -412,96 +412,146 @@ imgTargets.forEach( imgTarget => {
 })
 ///////////////////////////////////////////////////////////
 /////Slider component
-const slider = function () {
-  const slider = document.querySelector('.slider');
-  // slider.style.transform = "scale(0.5) translateX(-800px)";
-  // slider.style.overflow = "hidden";
-  const slides = document.querySelectorAll('.slide');
-  slides.forEach((slide, i) => {
-    slide.style.transform = `translateX(${110 * i}%)`;
-  });
 
-  const btnLeft = document.querySelector('.slider__btn--left');
-  const btnRight = document.querySelector('.slider__btn--right');
+//////////////////////////////LearntD
+// const slider = function () {
+//   const slider = document.querySelector('.slider');
+//   // slider.style.transform = "scale(0.5) translateX(-800px)";
+//   // slider.style.overflow = "hidden";
+
+  
+//   const slides = document.querySelectorAll('.slide');
+//   slides.forEach((slide, i) => {
+//     slide.style.transform = `translateX(${110 * i}%)`;
+//   });
+
+//   const btnLeft = document.querySelector('.slider__btn--left');
+//   const btnRight = document.querySelector('.slider__btn--right');
+//   let currSlide = 0;
+//   let noOfSlides = slides.length;
+//   /////adding event listeners to those buttons
+
+//   const nextSlide = () => {
+//     if (currSlide === noOfSlides - 1) {
+//       currSlide = 0;
+//     } else {
+//       currSlide++;
+//     }
+//     goToSlide(currSlide);
+//   };
+//   const prevSlide = () => {
+//     if (currSlide === 0) {
+//       currSlide = noOfSlides - 1;
+//     } else {
+//       currSlide--;
+//     }
+//     goToSlide(currSlide);
+//   };
+
+//   btnRight.addEventListener('click', function (e) {
+//     nextSlide();
+//     goToSlide(currSlide);
+//   });
+
+//   btnLeft.addEventListener('click', function (e) {
+//     prevSlide();
+//     goToSlide(currSlide);
+//   });
+
+//   document.addEventListener('keydown', function (e) {
+//     e.key === 'ArrowRight' && nextSlide();
+//     e.key === 'ArrowLeft' && prevSlide();
+//   })r;
+
+//   const init = function () {
+//     createDots();
+//     goToSlide(currSlide);
+//     activateDot(0);
+//   };
+//   function goToSlide(currSlide) {
+//     slides.forEach((slide, i) => {
+//       slide.style.transform = `translateX(${110 * (i - currSlide)}%)`;
+//       activateDot(currSlide);
+//     });
+//   }
+///////////////////////////////////////LearntU
+
+function Slider(){
   let currSlide = 0;
-  let noOfSlides = slides.length;
-  /////adding event listeners to those buttons
+  const slider = document.querySelector(".slider");
+  slider.style.overflow = "visible";
+  const btnRight = document.querySelector(".slider__btn--right");
+  const btnLeft = document.querySelector(".slider__btn--left");
+  const slides = document.querySelectorAll(".slide");
+  console.log(slides);
 
-  const nextSlide = () => {
-    if (currSlide === noOfSlides - 1) {
+  slides.forEach( (slide, i) => {
+    slide.style.transform = `translateX(${110 * (i - currSlide)}%)`
+  })
+
+  function goToSlide(currSlide){
+    slides.forEach( (slide, i) =>{
+      slide.style.transform = `translateX(${110 * (i - currSlide)}%`;
+    })
+  }
+
+  function nextSlide(){
+    if(currSlide === slides.length -1){
       currSlide = 0;
-    } else {
+    }
+    else{
       currSlide++;
     }
     goToSlide(currSlide);
-  };
-  const prevSlide = () => {
-    if (currSlide === 0) {
-      currSlide = noOfSlides - 1;
-    } else {
+  }
+
+  function prevSlide(){
+    if(currSlide === 0){
+      currSlide = slides.length -1;
+    }
+    else{
       currSlide--;
     }
-    goToSlide(currSlide);
-  };
-
-  btnRight.addEventListener('click', function (e) {
-    nextSlide();
-    goToSlide(currSlide);
-  });
-
-  btnLeft.addEventListener('click', function (e) {
-    prevSlide();
-    goToSlide(currSlide);
-  });
-
-  document.addEventListener('keydown', function (e) {
-    e.key === 'ArrowRight' && nextSlide();
-    e.key === 'ArrowLeft' && prevSlide();
-  });
-
-  const init = function () {
-    createDots();
-    goToSlide(currSlide);
-    activateDot(0);
-  };
-  function goToSlide(currSlide) {
-    slides.forEach((slide, i) => {
-      slide.style.transform = `translateX(${110 * (i - currSlide)}%)`;
-      activateDot(currSlide);
-    });
+    goToSlide(currSlide)
   }
+
+  btnRight.addEventListener("click", nextSlide);
+  btnLeft.addEventListener("click", prevSlide)
+}
+
+Slider();
 
   //////////////////////////////////////////////////////
   ////////////////////dots
-  const dotContainer = document.querySelector('.dots');
-  function createDots() {
-    slides.forEach(function (_, i) {
-      dotContainer.insertAdjacentHTML(
-        'beforeend',
-        `<button class = "dots__dot" data-slide = "${i}"></button>`
-      );
-    });
-  }
+//   const dotContainer = document.querySelector('.dots');
+//   function createDots() {
+//     slides.forEach(function (_, i) {
+//       dotContainer.insertAdjacentHTML(
+//         'beforeend',
+//         `<button class = "dots__dot" data-slide = "${i}"></button>`
+//       );
+//     });
+//   }
 
-  init();
+//   init();
 
-  function activateDot(slide) {
-    const dots = document.querySelectorAll('.dots__dot');
-    dots.forEach(dot => {
-      dot.classList.remove('dots__dot--active');
-      document
-        .querySelector(`.dots__dot[data-slide = "${slide}"]`)
-        .classList.add('dots__dot--active');
-    });
-  }
-  dotContainer.addEventListener('click', function (e) {
-    console.log(e);
-    if (e.target.classList.contains('dots__dot')) {
-      goToSlide(e.target.dataset.slide);
-    }
-  });
-};
-slider();
+//   function activateDot(slide) {
+//     const dots = document.querySelectorAll('.dots__dot');
+//     dots.forEach(dot => {
+//       dot.classList.remove('dots__dot--active');
+//       document
+//         .querySelector(`.dots__dot[data-slide = "${slide}"]`)
+//         .classList.add('dots__dot--active');
+//     });
+//   }
+//   dotContainer.addEventListener('click', function (e) {
+//     console.log(e);
+//     if (e.target.classList.contains('dots__dot')) {
+//       goToSlide(e.target.dataset.slide);
+//     }
+//   });
+// };
+// slider();
 /////////////////////////////////////////////////////
 ////////////Selecting elements
 // console.log(document.documentElement);
