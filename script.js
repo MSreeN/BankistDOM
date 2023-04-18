@@ -479,7 +479,7 @@ imgTargets.forEach( imgTarget => {
 function Slider(){
   let currSlide = 0;
   const slider = document.querySelector(".slider");
-  slider.style.overflow = "visible";
+  // slider.style.overflow = "visible";
   const btnRight = document.querySelector(".slider__btn--right");
   const btnLeft = document.querySelector(".slider__btn--left");
   const slides = document.querySelectorAll(".slide");
@@ -517,6 +517,12 @@ function Slider(){
 
   btnRight.addEventListener("click", nextSlide);
   btnLeft.addEventListener("click", prevSlide)
+
+  document.addEventListener("keydown", function(e){
+    e.key === "ArrowRight" && nextSlide();
+    e.key === "ArrowLeft" && prevSlide();
+    console.log(e);
+  })
 }
 
 Slider();
