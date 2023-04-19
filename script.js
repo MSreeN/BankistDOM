@@ -534,11 +534,22 @@ function Slider(){
   }
 
   function activateDot(currSlide){
-    // const dots = document.querySelectorAll(".dots__dot");
+    const dots = document.querySelectorAll(".dots__dot");
+    const dotContainer = document.querySelector(".dots");
     // console.log(dots);
     //       document
 //         .querySelector(`.dots__dot[data-slide = "${slide}"]`)
     document.querySelector(`.dots__dot[data-num ="${currSlide}"]`).classList.add("dots__dot--active");
+    dotContainer.addEventListener("click", function(e){
+      dots.forEach( dot => {
+        dot.classList.remove("dots__dot--active");
+      })
+         if(e.target.classList.contains("dots__dot")){
+          
+        goToSlide(e.target.dataset.num);
+        e.target.classList.add("dots__dot--active")
+      }
+    })
   }
 
   function init(){
